@@ -1,0 +1,31 @@
+.recommended-friends {
+    margin-top: 20px;
+  }
+  
+  .friend-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+  }
+  
+  .friend-card {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+  }
+  
+  .friend-card p {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  .friend-card .friend-info {
+    margin-left: 10px;
+  }
+  
+  .friend-card .friend-info p:first-child {
+    font-weight: bold;
+  }
+  
