@@ -4,10 +4,10 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Post from './Post';
 
-function HashtagPosts({ token }) {
+function HashtagPosts() {
   const { hashtag } = useParams();
   const [posts, setPosts] = useState([]);
-
+  const token = localStorage.getItem('token');
   useEffect(() => {
     // Fetch posts related to the hashtag
     const fetchPosts = async () => {
@@ -36,7 +36,7 @@ function HashtagPosts({ token }) {
       {/* Render posts */}
       <ul>
         {posts.map(post => (
-          <Post key={post.id} post={post} token={token} />
+          <Post key={post.id}  post={post} token={token} userId={post._links.user.href.split('/')[4]} />
         ))}
       </ul>
     </div>

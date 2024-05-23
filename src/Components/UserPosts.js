@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './style.css';
 import Post from "./Post"
-function UserPosts({ userId, token, postUpdated }) {
+function UserPosts({ userId, postUpdated }) {
     const [posts, setPosts] = useState([]);
-  
+    const token = localStorage.getItem('token');
 
       const fetchPosts = () => {
         fetch(`http://localhost:8080/users/${userId}/posts`, {

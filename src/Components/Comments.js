@@ -152,6 +152,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import LikeCommentButton from './LikeCommentButton';
 import './style.css';
+import { Link } from 'react-router-dom'; 
 
 function Comments({ comments, token, postId, onDeleteComment }) {
   const [username, setUsername] = useState('');
@@ -275,7 +276,8 @@ function Comments({ comments, token, postId, onDeleteComment }) {
       <div className="comment-avatar">{username.charAt(0).toUpperCase()}</div>
       <div className="comment-content">
         <div className="comment-header">
-          <span className="comment-author">{username}</span>
+    
+          <span className="comment-author">   <Link to={`/users/${userId}/profiles/1`}>{username} </Link></span>
           {`http://localhost:8080/users/${userId}` === comments._links.user.href && (
             <IconButton aria-label="delete" onClick={handleDelete}>
               <DeleteIcon />

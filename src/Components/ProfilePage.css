@@ -108,12 +108,13 @@
   width: 55%;
   color: #490057;
   border: 1px solid #f3f3f3;
-  background-color: #ede9ed;
+
   border-radius: 10px;
   padding-right: 40px;
 }
 
 .suggestions {
+
   width: 25%;
   margin-right: 15px;
   color: #490057;
@@ -122,6 +123,7 @@
   padding: 10px;
   border-radius: 10px;
   height: 50%;
+  
 }
 
 .about {

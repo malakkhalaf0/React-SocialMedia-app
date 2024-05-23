@@ -27,11 +27,11 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 240px;
-    height: 100%;
-    background-color: #490057;
+    /* width: 240px;
+    height: 100%; */
+    background-color: #464744;
     border-radius: 0 24px 24px 0;
-    box-sizing: border-box;
+    box-sizing: border-box; 
     transition: transform 0.3s;
     transform: translateX(-100%);
   }
@@ -59,9 +59,10 @@
     font-family: 'Poppins', sans-serif;
   }
   
-  .toolbar {
+  /* .toolbar {
     height: 64px;
-  }
+   
+  } */
   
   .divider {
     height: 1px;

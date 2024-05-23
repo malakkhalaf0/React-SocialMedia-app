@@ -98,7 +98,7 @@ function Side(props) {
       <Drawer
         variant="permanent"
         sx={{
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, bgcolor: '#490057', borderRadius: '0 18px 0px 0' },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', bgcolor: '#490057', width: drawerWidth, borderRadius: '0 18px 0px 0' },
         }}
         open
       >

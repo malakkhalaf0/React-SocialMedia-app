@@ -14,6 +14,7 @@ function UserList() {
   const userId = localStorage.getItem('userId');
   
   const [postUpdated, setPostUpdated] = useState(false);
+  
   const handlePostCreated = () => {
     setPostUpdated(!postUpdated);
   };
@@ -45,29 +46,33 @@ function UserList() {
 
   return (
     <div className="grid-container">
-    <div class="top" ><TopBar/></div>
-     <div class="side"> <Side></Side></div>
-        <div class="mid">
-        <CreatePostForm token={token} userId={userId} onPostCreated={handlePostCreated} />
-  <Logout />
-  <div className='container'>
-  
-    <div className='posts-section'>
-      <br/>
-      <div>
-        {users.map(user => (
-         
-          <UserPosts key={user.id} userId={user.id} token={token} postUpdated={postUpdated} />
+      <div class="top" style={{ marginBottom: '100px'}}><TopBar /></div>
+      <div class="side" style={{marginLeft:'80px'}}> <Side></Side></div>
+      <div class="mid">
+      <div className='container'>
+        <div className='posts-section'>
           
-        ))}
-      </div>
-    </div>
-  <div style={{width:'40px'}}></div>
-    <div className='recommended-friends-section'>
-   
-      <RecommendedFriends userId={userId} token={token} />
-    </div>
-  </div>
+           <CreatePostForm token={token} userId={userId} onPostCreated={handlePostCreated}/>
+        <div>
+              {users.map(user => (
+
+                <UserPosts key={user.id} userId={user.id} token={token} postUpdated={postUpdated} />
+
+              ))}
+            </div></div>
+       
+        <div className='recommended-friends-section'>
+
+<RecommendedFriends userId={userId} token={token} />
+</div>
+</div>
+        <Logout />
+    
+
+      
+          
+      
+     
 
   
 

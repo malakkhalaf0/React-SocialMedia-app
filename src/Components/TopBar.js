@@ -7,6 +7,7 @@ import { colors } from '@mui/material';
 function TopBar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const token = localStorage.getItem('token');
+  const username = localStorage.getItem('username');
   //const token ='eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb3RheiIsImlhdCI6MTcxNjAyNzg4MiwiZXhwIjoxNzE2MTE0MjgyfQ.lSe66wEVfw07us5BNUTuDFcTFL54p8HKrM7IZAxYJjI';
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -20,7 +21,7 @@ function TopBar() {
     <div className="app-bar">
       <div className="toolbar">
         <div className="title">
-          <h1>Hello, User! </h1>
+          <h1>Hello, {username }! </h1>
         </div>
         
         <div className="search">
@@ -28,7 +29,7 @@ function TopBar() {
         </div>
      
         <div className="avatar">
-        <h3 >User</h3>
+        <h3 >{username} </h3>
           <IconButton
             size="large"
             edge="end"

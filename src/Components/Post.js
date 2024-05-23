@@ -179,18 +179,17 @@ const handleSubmitEditForm = async (data) => {
           'Authorization': `Bearer ${token}`
         }
       });
-
       if (response.ok) {
         onPostChange();
-        
+        setSnackbarMessage('Post shared successfully');
+        setSnackbarOpen(true);
+      } else {
+        throw new Error('Failed to share post');
       }
-   else{
-    throw new Error('Failed to share post');
-   }
-      // Optionally, you can handle success here (e.g., show a success message)
     } catch (error) {
       console.error('Error sharing post:', error);
-      // Optionally, you can handle errors here (e.g., show an error message)
+      setSnackbarMessage('Failed to share post');
+      setSnackbarOpen(true);
     }
   };
   const renderCaptionWithLinks = () => {
@@ -240,7 +239,13 @@ const handleSubmitEditForm = async (data) => {
       <Card sx={{ maxWidth: 800 }}>
      
         <CardHeader
-          avatar={<Avatar sx={{ bgcolor: green[500] }} aria-label="recipe">{userName ? userName.charAt(0).toUpperCase() : ''}</Avatar>}
+            avatar={
+              <Link to={`/users/${userId}/profiles/1`}>
+                <Avatar sx={{ bgcolor: green[500] }} aria-label="recipe">
+                  {userName ? userName.charAt(0).toUpperCase() : ''}
+                </Avatar>
+              </Link>
+            }
           action={
             <>
               {post._links.user.href === `http://localhost:8080/users/${userIdc}` && (
@@ -261,7 +266,8 @@ const handleSubmitEditForm = async (data) => {
             </>
             
           }
-          title={userName}
+          title={
+          <Link to={`/users/${userId}/profiles/1`}>{userName} </Link>}
           subheader={post.audiance === 'PUBLIC' ? (
             <>
               {new Date(post.date).toLocaleString()}

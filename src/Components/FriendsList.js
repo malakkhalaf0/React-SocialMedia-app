@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar'; // Import Avatar component
 import './FriendsList.css'; // Import the CSS file
+import Friends from './Friends';
 
-function FriendsList({ user, token }) {
+function FriendsList({ user, token ,  friendUpdated}) {
   const [friends, setFriends] = useState([]);
-
+  const userIdp = localStorage.getItem('userId');
   useEffect(() => {
     if (user) {
       fetchFriends();
     }
-  }, [user, token]);
+  }, [user, token,  friendUpdated]);
 
   const fetchFriends = async () => {
     try {
@@ -32,7 +33,7 @@ function FriendsList({ user, token }) {
   };
 
   return (
-    <div className="recommended-friends">
+    <div className="recommended-friendsssss">
       <h2>Friends</h2>
       <div className="friend-list">
         {friends.map((friend) => (
@@ -45,8 +46,14 @@ function FriendsList({ user, token }) {
                 <p>{friend.username}</p>
                 <p>@{friend.username}</p>
               </Link>
+              {friend.id === parseInt(userIdp) ? (
+                <></>
+              ) : (
+                <Friends user={friend} token={token} />
+              )}
             </div>
           </div>
+      
         ))}
       </div>
     </div>

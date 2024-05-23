@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Friends.css'; // Import your CSS file
-function Friends({ user, token }) {
+function Friends({ user, token , onfriendUpdated }) {
   const [friends, setFriends] = useState([]);
   const [updated, setupdated] = useState(false);
-
+  const userIdp = localStorage.getItem('userId');
   useEffect(() => {
     if (user) {
       fetchFriends();
@@ -45,7 +45,7 @@ function Friends({ user, token }) {
 
   const deleteFriend = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/users/1/friends/${user.id}`, {
+      const response = await fetch(`http://localhost:8080/users/${userIdp}/friends/${user.id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -56,6 +56,7 @@ function Friends({ user, token }) {
       }
       setFriends(prevFriends => prevFriends.filter(friend => friend.id !== user.id));
       setupdated(!updated);
+      onfriendUpdated();
     } catch (error) {
       console.error('Error handling unfollow action:', error);
     }
@@ -63,7 +64,7 @@ function Friends({ user, token }) {
 
   const addFriend = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/users/1/friends?friendIds=${user.id}`, {
+      const response = await fetch(`http://localhost:8080/users/${userIdp}/friends?friendIds=${user.id}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -74,6 +75,7 @@ function Friends({ user, token }) {
       }
       const newFriend = await response.json();
       setFriends(prevFriends => [...prevFriends, newFriend]);
+      onfriendUpdated();
     } catch (error) {
       console.error('Error handling follow action:', error);
     }

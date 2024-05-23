@@ -59,10 +59,10 @@
  
 
   }
-  .app-bar {
-    position: fixed;
+  /* .app-bar {
+    position: fixed; s
     top: 0;
     left: 16%;
     right: 0;
-    z-index: 1000; /* Adjust the z-index as needed */
-  }
+    z-index: 1000; 
+  } */

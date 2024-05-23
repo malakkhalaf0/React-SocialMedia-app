@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import SinglePost from './SinglePost';
 
 function PostList() {
   const [posts, setPosts] = useState([]);
@@ -31,9 +32,11 @@ function PostList() {
       <ul>
         {posts.map((post) => (
           <li key={post.id}>
-            <p>{post.caption}</p>
+
             <Link to={`/users/${post._links.self.href.split('/')[4]}/posts/${post.id}`}>View Post</Link>
-          </li>
+            <SinglePost userId= {post._links.self.href.split('/')[4]} postId={post.id}></SinglePost> 
+                   </li>
+                   
         ))}
       </ul>
     </div>
