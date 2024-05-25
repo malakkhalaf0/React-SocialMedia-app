@@ -328,8 +328,8 @@ function Profile() {
   if (!profile && userId === userIdp) {
     return (
       <div>
-        <h2>Create Profile</h2>
-        <ProfileForm token={token} onUpdate={handleUpdate} />
+       
+        <ProfileForm profile={null} onUpdate={handleUpdate} />
       </div>
     );
   }

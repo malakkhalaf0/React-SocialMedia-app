@@ -93,7 +93,7 @@ function UserSearch({ token }) {
           </div>
         )}
         {hasPosts && (
-          <Link to="/postlist">Search for posts that have {query}</Link>
+          <Link to={`/postlist?query=${query}`}>Search for posts that have {query}</Link>
         )}
       </div>
     </div>

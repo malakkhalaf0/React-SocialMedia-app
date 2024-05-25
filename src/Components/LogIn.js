@@ -16,7 +16,7 @@ const LogIn = () => {
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event) => event.preventDefault();
-
+console.log(localStorage)
   const login = async (event) => {
     event.preventDefault();
 

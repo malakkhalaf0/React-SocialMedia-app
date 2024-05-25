@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Friends.css'; // Import your CSS file
-function Friends({ user, token , onfriendUpdated }) {
+function Friends({ user, token  }) {
   const [friends, setFriends] = useState([]);
   const [updated, setupdated] = useState(false);
   const userIdp = localStorage.getItem('userId');
@@ -56,7 +56,7 @@ function Friends({ user, token , onfriendUpdated }) {
       }
       setFriends(prevFriends => prevFriends.filter(friend => friend.id !== user.id));
       setupdated(!updated);
-      onfriendUpdated();
+      // onfriendUpdated();
     } catch (error) {
       console.error('Error handling unfollow action:', error);
     }
@@ -75,7 +75,7 @@ function Friends({ user, token , onfriendUpdated }) {
       }
       const newFriend = await response.json();
       setFriends(prevFriends => [...prevFriends, newFriend]);
-      onfriendUpdated();
+      // onfriendUpdated();
     } catch (error) {
       console.error('Error handling follow action:', error);
     }

@@ -25,7 +25,7 @@ import { BorderColorSharp } from '@mui/icons-material';
 
 
 
-function Post({ post, token, userId , onPostChange }) {
+function Post({ post, userId , onPostChange }) {
   const [commentText, setCommentText] = useState('');
   const [commentsUpdated, setCommentsUpdated] = useState(false);
   const [userName, setUserName] = useState('');
@@ -36,7 +36,7 @@ function Post({ post, token, userId , onPostChange }) {
   const [menuAnchorEl, setMenuAnchorEl] = useState(null);
   const [editFormOpen, setEditFormOpen] = useState(false);
   const userIdc = localStorage.getItem('userId');
-
+  const token = localStorage.getItem('token');
   const handleCommentsToggle = () => {
     setShowComments(!showComments);
   };
