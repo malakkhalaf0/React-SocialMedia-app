@@ -8,25 +8,21 @@ import HashtagPosts from './Components/HashtagPosts';
 import Profile from './Components/Profile';
 import User from './Components/User';
 import { useParams } from 'react-router-dom';
-
 import {  Routes, Route } from 'react-router-dom';
 import UserList from './UserList';
 import Register from './Components/Register';
 import LogIn from './Components/LogIn';
-
-import CreatePostForm from './Components/CreatePostForm';
-
 import ProtectedRoute from './Components/ProtectedRoute';
 
 
 import PostList from './Components/PostList';
   const App = () => {
     const user = localStorage.getItem('username');
-   // const token ='eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb3RheiIsImlhdCI6MTcxNjAyNzg4MiwiZXhwIjoxNzE2MTE0MjgyfQ.lSe66wEVfw07us5BNUTuDFcTFL54p8HKrM7IZAxYJjI';
-    function UserWrapper({ token }) {
+
+    function UserWrapper() {
       const { userId } = useParams();
     
-      return <User userId={userId} token={token} />;
+      return <User userId={userId} />;
      
     }
 
@@ -43,15 +39,6 @@ import PostList from './Components/PostList';
             element={
         <div>
                   <UserList />
-                  {/* <Routes>
-                  <Route path="/users/:userId/profiles/:profileId" element={<Profile />} />
-               
-                    <Route path="/users/:userId/posts/:postId" element={<SinglePost />} />
-                    <Route path="/hashtags/:hashtag" element={<HashtagPosts />} />
-                   
-                    <Route path="/users/:userId" element={<UserWrapper  />} />
-                    <Route path="/postlist"element ={<PostList />}/>
-                        </Routes> */}
                   </div>
               
             }

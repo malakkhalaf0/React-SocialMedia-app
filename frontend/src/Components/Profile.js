@@ -329,7 +329,7 @@ function Profile() {
     return (
       <div>
         <h2>Create Profile</h2>
-        <ProfileForm token={token} onUpdate={handleUpdate} />
+        <ProfileForm profile={null} token={token} onUpdate={handleUpdate} />
       </div>
     );
   }

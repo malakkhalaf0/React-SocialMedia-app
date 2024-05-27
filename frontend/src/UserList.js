@@ -18,7 +18,7 @@ function UserList() {
   const handlePostCreated = () => {
     setPostUpdated(!postUpdated);
   };
-  //const token ='eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb3RheiIsImlhdCI6MTcxNjAyNzg4MiwiZXhwIjoxNzE2MTE0MjgyfQ.lSe66wEVfw07us5BNUTuDFcTFL54p8HKrM7IZAxYJjI';
+
   useEffect(() => {
     fetch('http://localhost:8080/users', {
       headers: {
@@ -59,22 +59,14 @@ function UserList() {
                 <UserPosts key={user.id} userId={user.id} token={token} postUpdated={postUpdated} />
 
               ))}
-            </div></div>
+            </div>
+        </div>
        
         <div className='recommended-friends-section'>
 
 <RecommendedFriends userId={userId} token={token} />
 </div>
 </div>
-        <Logout />
-    
-
-      
-          
-      
-     
-
-  
 
 {users.map(user => (
   <div key={user.id}>

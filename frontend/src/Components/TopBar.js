@@ -4,11 +4,17 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import UserSearch from './UserSearch';
 import { colors } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+
+
 function TopBar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const token = localStorage.getItem('token');
   const username = localStorage.getItem('username');
-  //const token ='eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb3RheiIsImlhdCI6MTcxNjAyNzg4MiwiZXhwIjoxNzE2MTE0MjgyfQ.lSe66wEVfw07us5BNUTuDFcTFL54p8HKrM7IZAxYJjI';
+  const userId = localStorage.getItem('userId');
+
+  const navigate = useNavigate();
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -16,6 +22,22 @@ function TopBar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const goToProfile = () => {
+    navigate(`/users/${userId}/profiles/1`);
+    handleClose();
+  };
+
+  const goToAccount = () => {
+    navigate(`/users/${userId}`);
+    handleClose();
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate('/');
+  }
+
 
   return (
     <div className="app-bar">
@@ -45,9 +67,9 @@ function TopBar() {
           {/* Menu items */}
           {anchorEl && (
             <div className="menu">
-              <div className="menu-item" onClick={handleClose}>Profile</div>
-              <div className="menu-item" onClick={handleClose}>My account</div>
-              <div className="menu-item" onClick={handleClose}>Logout</div>
+              <div className="menu-item" onClick={goToProfile}>Profile</div>
+              <div className="menu-item" onClick={goToAccount}>My account</div>
+              <div className="menu-item" onClick={handleLogout}>Logout</div>
             </div>
           )}
         </div>

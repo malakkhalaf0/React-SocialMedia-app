@@ -11,9 +11,16 @@ const LogIn = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const paperStyle = { padding: '50px 20px', width: 600, margin: "20px auto" };
+  const paperStyle = {
+    padding: '50px 20px',
+    width: 400,
+    minHeight: 450,
+    margin: '20px auto',
+    backgroundColor: 'rgba(255, 255, 255, 0)', // Transparent white background
+    backdropFilter: 'blur(9px)',
+    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)', // Background blur effect
+  };
   const formStyle = { display: 'flex', flexDirection: 'column', gap: '20px' };
-
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event) => event.preventDefault();
 
@@ -35,7 +42,7 @@ const LogIn = () => {
         navigate('/home');
         console.log(data)
       } else {
-        throw new Error('Failed to login');
+        setError("Your Username or Password is wrong !");
       }
     } catch (err) {
       setError(err.message);
@@ -43,7 +50,7 @@ const LogIn = () => {
   };
 
   return (
-    <div style={{ background: 'linear-gradient(to bottom, #0068bd, #aec9f7)', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <div className="Register" style={{ backgroundSize: 'cover', backgroundImage: ' url(http://localhost/m.png)', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <Paper elevation={3} style={paperStyle}>
         <Typography variant="h5" gutterBottom style={{ textAlign: 'center', fontWeight: 'bold', color: '#0068bd' }}>
           Sign In
@@ -57,6 +64,8 @@ const LogIn = () => {
             value={username}
             onChange={(event) => setUsername(event.target.value)}
             required
+            error={error !== ""}
+            helperText={error}
           />
           <FormControl variant="standard" required>
             <InputLabel>Password</InputLabel>
@@ -65,6 +74,8 @@ const LogIn = () => {
               type={showPassword ? 'text' : 'password'}
               value={password}
               onChange={(event) => setPassword(event.target.value)}
+              error={error !== ""}
+              helperText={error}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
@@ -74,7 +85,6 @@ const LogIn = () => {
               }
             />
           </FormControl>
-          {error && <Typography color="error">{error}</Typography>}
           <Button type="submit" variant="contained" color="primary">Sign In</Button>
           <Typography style={{ textAlign: 'center', fontWeight: 'bold', color: '#0068bd' }}>
             Don't Have an Account? <Link to="/signup">Sign Up</Link>
