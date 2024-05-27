@@ -17,24 +17,32 @@ import LogIn from './Components/LogIn';
 import CreatePostForm from './Components/CreatePostForm';
 
 import ProtectedRoute from './Components/ProtectedRoute';
-
+import OAuthRedirect from './Components/OAuthRedirect';
 
 import PostList from './Components/PostList';
+import FriendsPosts from './Components/FriendsPosts';
+import AllHashtags from './Components/AllHashtags';
+
+import ChatRoom from './Components/ChatRoom';
   const App = () => {
     const user = localStorage.getItem('username');
+ 
    // const token ='eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb3RheiIsImlhdCI6MTcxNjAyNzg4MiwiZXhwIjoxNzE2MTE0MjgyfQ.lSe66wEVfw07us5BNUTuDFcTFL54p8HKrM7IZAxYJjI';
-    function UserWrapper({ token }) {
+    function UserWrapper() {
       const { userId } = useParams();
     
-      return <User userId={userId} token={token} />;
+      return <User userId={userId} />;
      
     }
 
     return (
+
+      // <ChatRoom userId={1} />
     
       <Routes>
       <Route path="/" element={<LogIn />} />
       <Route path="/signup" element={<Register />} />
+      <Route path="/login/oauth2/code/google" element={<OAuthRedirect />} />
     
       <Route
         path="/home/*"
@@ -75,7 +83,19 @@ import PostList from './Components/PostList';
     path="/postlist"
     element={<ProtectedRoute element={<PostList />} />}
   />
+
+<Route
+        path="/FriendsPosts"
+        element={<ProtectedRoute element={<FriendsPosts />} />}
+      />
+
+
+<Route
+        path="/popular-hashtags"
+        element={<ProtectedRoute element={<AllHashtags />} />}
+      />
     </Routes>
+    
     
    // <AboutUs></AboutUs>
 

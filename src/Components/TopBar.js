@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './TopBar.css'; // Import your CSS file for styling
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import UserSearch from './UserSearch';
-import { colors } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+
 function TopBar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const token = localStorage.getItem('token');
   const username = localStorage.getItem('username');
-  //const token ='eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb3RheiIsImlhdCI6MTcxNjAyNzg4MiwiZXhwIjoxNzE2MTE0MjgyfQ.lSe66wEVfw07us5BNUTuDFcTFL54p8HKrM7IZAxYJjI';
+  const userId = localStorage.getItem('userId');
+  const navigate = useNavigate();
+  const menuRef = useRef(null);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -17,19 +20,50 @@ function TopBar() {
     setAnchorEl(null);
   };
 
+  const goToProfile = () => {
+    navigate(`/users/${userId}/profiles/1`);
+    handleClose();
+  };
+
+  const goToAccount = () => {
+    navigate(`/users/${userId}`);
+    handleClose();
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate('/');
+  }
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        handleClose();
+      }
+    };
+
+    if (anchorEl) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [anchorEl]);
+
   return (
     <div className="app-bar">
       <div className="toolbar">
         <div className="title">
-          <h1>Hello, {username }! </h1>
+          <h1>Hello, {username}!</h1>
         </div>
-        
         <div className="search">
-        <UserSearch token={token}></UserSearch>
+          <UserSearch token={token} />
         </div>
-     
         <div className="avatar">
-        <h3 >{username} </h3>
+          <h3>{username}</h3>
           <IconButton
             size="large"
             edge="end"
@@ -44,10 +78,10 @@ function TopBar() {
           </IconButton>
           {/* Menu items */}
           {anchorEl && (
-            <div className="menu">
-              <div className="menu-item" onClick={handleClose}>Profile</div>
-              <div className="menu-item" onClick={handleClose}>My account</div>
-              <div className="menu-item" onClick={handleClose}>Logout</div>
+            <div className="menu" ref={menuRef}>
+              <div className="menu-item" onClick={goToProfile}>Profile</div>
+              <div className="menu-item" onClick={goToAccount}>My account</div>
+              <div className="menu-item" onClick={handleLogout}>Logout</div>
             </div>
           )}
         </div>

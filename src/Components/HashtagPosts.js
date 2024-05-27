@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Post from './Post';
+import TopBar from './TopBar';
+import Side from './Side';
 
 function HashtagPosts() {
   const { hashtag } = useParams();
@@ -32,13 +34,19 @@ function HashtagPosts() {
 
   return (
     <div>
+         <div className="grid-container">
+      <div class="top" style={{ marginBottom: '100px'}}><TopBar /></div>
+      <div class="side" style={{marginLeft:'80px'}}> <Side></Side></div>
+      <div class="mid">
       <h1>Posts with #{hashtag}</h1>
-      {/* Render posts */}
+     
       <ul>
         {posts.map(post => (
           <Post key={post.id}  post={post} token={token} userId={post._links.user.href.split('/')[4]} />
         ))}
       </ul>
+    </div>
+    </div>
     </div>
   );
 }

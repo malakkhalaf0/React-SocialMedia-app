@@ -46,13 +46,13 @@ function UserList() {
 
   return (
     <div className="grid-container">
-      <div class="top" style={{ marginBottom: '100px'}}><TopBar /></div>
-      <div class="side" style={{marginLeft:'80px'}}> <Side></Side></div>
-      <div class="mid">
+      <div className="top" style={{ marginBottom: '100px'}}><TopBar /></div>
+      <div className="side" style={{marginLeft:'80px'}}> <Side></Side></div>
+      <div className="mid">
       <div className='container'>
         <div className='posts-section'>
           
-           <CreatePostForm token={token} userId={userId} onPostCreated={handlePostCreated}/>
+           <CreatePostForm  userId={userId} onPostCreated={handlePostCreated}/>
         <div>
               {users.map(user => (
 
@@ -66,29 +66,7 @@ function UserList() {
 <RecommendedFriends userId={userId} token={token} />
 </div>
 </div>
-        <Logout />
-    
 
-      
-          
-      
-     
-
-  
-
-{users.map(user => (
-  <div key={user.id}>
-    <h1>User: {user.username}</h1>
-   
-    <Link to={`/users/${user.id}/profiles/1`}>View Profile</Link>
-    <br></br>
-    <Link to={`/users/${user.id}`}>View user account</Link>
-
-  </div>
-  
-))}
-  
-  <Link to={`/users/1/profiles/1`}>View </Link>
     </div>
     </div>
   );

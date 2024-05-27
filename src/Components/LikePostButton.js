@@ -186,8 +186,8 @@ function LikePostButton({ postId, userId, token }) {
     <>
     <div className="post-interaction">
       <PostLikes postId={postId} token={token} onLikeAdded={updated} />
-      <div style={{ color:'#490057'}}>|
-      </div>
+      {/* <div style={{ color:'#490057'}}>|
+      </div> */}
       <label className="ui-like">
         <input 
           type="checkbox" 

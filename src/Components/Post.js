@@ -20,6 +20,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
+import CommentIcon from '@mui/icons-material/Comment';
 import { BorderColorSharp } from '@mui/icons-material';
 
 
@@ -234,16 +235,22 @@ const handleSubmitEditForm = async (data) => {
     setSnackbarOpen(false);
   };
 
+
   return (
-    <>
-      <Card sx={{ maxWidth: 800 }}>
+    
+      <Card sx={{ width: 600, overflow:'visible',   boxShadow:' 0px 0px 10px 3px rgba(0, 0, 0, 0.1)' }}>
      
         <CardHeader
             avatar={
-              <Link to={`/users/${userId}/profiles/1`}>
-                <Avatar sx={{ bgcolor: green[500] }} aria-label="recipe">
+              <Link to={`/users/${userId}/profiles/1`} style={{textDecoration:'none'}}>
+                {/* <Avatar sx={{ bgcolor: '#490057' }} aria-label="recipe">
                   {userName ? userName.charAt(0).toUpperCase() : ''}
-                </Avatar>
+                </Avatar> */}
+                        <img
+              src="\images\images.jpg"
+              alt="User Avatar"
+              className="avatar-image"
+            />
               </Link>
             }
           action={
@@ -267,11 +274,11 @@ const handleSubmitEditForm = async (data) => {
             
           }
           title={
-          <Link to={`/users/${userId}/profiles/1`}>{userName} </Link>}
+          <Link to={`/users/${userId}/profiles/1`} style={{textDecoration:'none',fontSize:'large'}}>{userName} </Link>}
           subheader={post.audiance === 'PUBLIC' ? (
             <>
               {new Date(post.date).toLocaleString()}
-              <PublicIcon />
+              
             </>
           ) : (
             <>
@@ -280,7 +287,7 @@ const handleSubmitEditForm = async (data) => {
           )}
         />
       <div className="post">
-          <h3>{renderCaptionWithLinks()}</h3> <br/>
+          <p style={{color:'#490057', fontSize:'20px', fontFamily: 'Poppins, sans-serif'}}>{renderCaptionWithLinks()}</p> <br/>
           {post.imageUrl && (
       <img
         src={post.imageUrl} 
@@ -295,38 +302,56 @@ const handleSubmitEditForm = async (data) => {
         Your browser does not support the video tag.
       </video>
     )}
-            <div style={{ color :'#A303A0'}} >_________________________________________________________________</div>
-            <br></br>
+          
+          
           <div className='CL'>
       <Button onClick={handleCommentsToggle} style={{ textTransform: 'lowercase' ,  color :'#490057'}}>
-        Comments
+       <CommentIcon></CommentIcon>
       </Button>
 
       {/* Dialog for displaying comments */}
       <Dialog open={showComments} onClose={handleCommentsToggle} >
-        <DialogTitle>Comments</DialogTitle>
+      
         <DialogContent >
-          <PostComments postId={post.id} token={token} commentsUpdated={commentsUpdated}  />
+ 
+          <PostComments postId={post.id}  commentsUpdated={commentsUpdated}  />
+
+          
+        <form onSubmit={handleSubmit} style={{ display: 'flex', alignItems: 'center', border: '1px solid #ddd', borderRadius: '5px', padding: '5px 10px', width: '550px', backgroundColor: '#f9f9f9' }}>
+      <InputBase
+        value={commentText}
+        onChange={(event) => setCommentText(event.target.value)}
+        placeholder="Add a comment..."
+        inputProps={{ 'aria-label': 'Add a comment...' }}
+        sx={{ flex: 1, marginRight: '10px' }}
+      />
+      <Button type="submit" sx={{ minWidth: 'auto', padding: '0', color: '#490057' }}>
+        <SendIcon />
+      </Button>
+    </form> 
         </DialogContent>
+
+
       </Dialog>
 
             <LikePostButton postId={post.id} userId={userIdc} token={token}/> 
             <Button sx={{ border: 'none', outline: 'none',color:'#490057' }} onClick={handleShare}><RepeatIcon /></Button>
           </div>
-          <form onSubmit={handleSubmit}>
-            <br/>
-            <InputBase
-              value={commentText}
-              onChange={(event) => setCommentText(event.target.value)}
-              placeholder=" Write a Comment..."
-              inputProps={{ 'aria-label': 'Write a Comment...' }}
-              sx={{ border: '1px solid #490057', borderRadius: '10px' , width: '500px' , color: '#490057'}}
-            />
-            <Button type="submit"  sx={{ width: '50px', height: '30px',fontSize: '13px' ,color:'#490057' }}><SendIcon/></Button>
-          </form>
+          <br></br>
+          <form onSubmit={handleSubmit} style={{ display: 'flex', alignItems: 'center', border: '1px solid #ddd', borderRadius: '5px', padding: '5px 10px', width: '550px', backgroundColor: '#f9f9f9' }}>
+      <InputBase
+        value={commentText}
+        onChange={(event) => setCommentText(event.target.value)}
+        placeholder="Add a comment..."
+        inputProps={{ 'aria-label': 'Add a comment...' }}
+        sx={{ flex: 1, marginRight: '10px' }}
+      />
+      <Button type="submit" sx={{ minWidth: 'auto', padding: '0', color: '#490057' }}>
+        <SendIcon />
+      </Button>
+    </form>
         </div>
-      </Card>
-            <EditPostForm
+        <EditPostForm
               open={editFormOpen}
               onClose={handleCloseEditForm}
               onSubmit={handleSubmitEditForm}
@@ -340,7 +365,9 @@ const handleSubmitEditForm = async (data) => {
         onClose={handleCloseSnackbar}
         message={snackbarMessage}
       />
-    </>
+      </Card>
+
+   
   );
 }
 

@@ -71,6 +71,7 @@ function UserSearch({ token }) {
           onChange={handleInputChange}
           placeholder="Search..."
           className="search-input"
+          style={{textDecoration:'none',  outline: 'none'}}
         />
       </div>
       <div className="search-results">
@@ -93,7 +94,7 @@ function UserSearch({ token }) {
           </div>
         )}
         {hasPosts && (
-          <Link to="/postlist">Search for posts that have {query}</Link>
+          <Link to={`/postlist?query=${query}`}>Search for posts that have {query}</Link>
         )}
       </div>
     </div>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Comments from './Comments';
 
-function PostComments({ postId, token, commentsUpdated}) {
+function PostComments({ postId, commentsUpdated }) {
   const [comments, setComments] = useState([]);
+  const token = localStorage.getItem('token');
 
   const fetchComments = () => {
     fetch(`http://localhost:8080/posts/${postId}/comments`, {
@@ -29,6 +30,15 @@ function PostComments({ postId, token, commentsUpdated}) {
     setComments(updatedComments);
   };
 
+  // Function to handle comment editing
+  const handleEditComment = (updatedComment) => {
+    // Update the edited comment in the comments array
+    const updatedComments = comments.map(comment =>
+      comment.id === updatedComment.id ? updatedComment : comment
+    );
+    setComments(updatedComments);
+  };
+
   return (
     <div className="post-comments">
       <h2>Comments ({comments.length})</h2>
@@ -37,9 +47,8 @@ function PostComments({ postId, token, commentsUpdated}) {
           key={comment.id}
           comments={comment}
           postId={postId}
-          token={token}
           onDeleteComment={handleDeleteComment}
-        // Pass the callback function for comment deletion
+          onEditComment={handleEditComment} // Pass the callback function for comment editing
         />
       ))}
     </div>
