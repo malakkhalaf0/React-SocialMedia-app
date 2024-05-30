@@ -1,26 +1,27 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import Toolbar from '@mui/material/Toolbar';
-import HomeIcon from '@mui/icons-material/Home';
-import PeopleIcon from '@mui/icons-material/People';
-import SettingsIcon from '@mui/icons-material/Settings';
 import IconButton from '@mui/material/IconButton';
+import HomeIcon from '@mui/icons-material/Home';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import PeopleIcon from '@mui/icons-material/People';
+import ChatIcon from '@mui/icons-material/Chat';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const drawerWidth = 240;
 
 function Side(props) {
   const { window } = props;
+  const location = useLocation(); // Use useLocation hook to get the current path
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
   const userId = localStorage.getItem('userId');
@@ -50,15 +51,15 @@ function Side(props) {
         </h1>
       </Box>
       <Toolbar />
-   
-
       <List>
         {[
           { text: 'Home', icon: <HomeIcon />, link: '/home' },
           {},
           { text: 'Popular Hashtags', icon: <TrendingUpIcon />, link: '/popular-hashtags' },
-          {},
+        {},
           { text: 'Following', icon: <PeopleIcon />, link: '/FriendsPosts' },
+          {},
+          { text: 'Chat', icon: <ChatIcon />, link: '/chat' },
           {},
           { text: 'Setting', icon: <SettingsIcon />, link: `/users/${userId}` }
         ].map((item, index) => (
@@ -75,21 +76,22 @@ function Side(props) {
                     color: '#FBB03B',
                   },
                 },
+                '& .MuiListItemIcon-root': {
+                  color: location.pathname === item.link ? '#FBB03B' : '#D9D9D9',
+                },
+                '& .MuiListItemText-primary': {
+                  color: location.pathname === item.link ? '#FBB03B' : '#D9D9D9',
+                },
               }}
             >
-              <ListItemIcon sx={{ color: '#D9D9D9' }}>
+              <ListItemIcon sx={{ color: location.pathname === item.link ? '#FBB03B' : '#D9D9D9' }}>
                 {item.icon}
               </ListItemIcon>
-              <ListItemText primary={item.text} sx={{ color: '#D9D9D9', fontFamily: 'Poppins, sans-serif' }} />
+              <ListItemText primary={item.text} sx={{ color: location.pathname === item.link ? '#FBB03B' : '#D9D9D9', fontFamily: 'Poppins, sans-serif' }} />
             </ListItemButton>
-          
           </ListItem>
-          
         ))}
-        
       </List>
-
-    
     </div>
   );
 
@@ -98,7 +100,6 @@ function Side(props) {
   return (
     <Box>
       <CssBaseline />
-      
       <Drawer
         container={container}
         variant="temporary"

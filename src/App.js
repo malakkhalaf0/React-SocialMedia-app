@@ -9,7 +9,7 @@ import Profile from './Components/Profile';
 import User from './Components/User';
 import { useParams } from 'react-router-dom';
 
-import {  Routes, Route } from 'react-router-dom';
+import {  Routes, Route , useLocation } from 'react-router-dom';
 import UserList from './UserList';
 import Register from './Components/Register';
 import LogIn from './Components/LogIn';
@@ -23,7 +23,7 @@ import PostList from './Components/PostList';
 import FriendsPosts from './Components/FriendsPosts';
 import AllHashtags from './Components/AllHashtags';
 
-import ChatRoom from './Components/ChatRoom';
+import Chat from './Components/Chat';
   const App = () => {
     const user = localStorage.getItem('username');
  
@@ -37,7 +37,9 @@ import ChatRoom from './Components/ChatRoom';
 
     return (
 
-      // <ChatRoom userId={1} />
+      
+    
+
     
       <Routes>
       <Route path="/" element={<LogIn />} />
@@ -94,15 +96,32 @@ import ChatRoom from './Components/ChatRoom';
         path="/popular-hashtags"
         element={<ProtectedRoute element={<AllHashtags />} />}
       />
+
+
+<Route path="/chat" element={<ProtectedRoute element={<Chat  />} />}
+ />
     </Routes>
-    
-    
-   // <AboutUs></AboutUs>
 
 
-    );
     
-  };
+    
+
+
+     
+        
+      
+
+  );
+}
+
+// const ChatWrapper = () => {
+//   const location = useLocation();
+//   const { loggedInUser } = location.state || {}; // Retrieve loggedInUser from state
+
+//   return <Chat loggedInUser={loggedInUser} />;
+// };
+
+  
 
 
   export default App;

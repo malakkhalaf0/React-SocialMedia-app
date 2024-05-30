@@ -8,8 +8,9 @@
   align-items: center;
   border-radius: 10px;
   background-color: #edeae9;
+
   transition: border-color 0.3s;
-  width: 600px;
+  width: 700px;
 }
 
 .search-wrapper:hover {

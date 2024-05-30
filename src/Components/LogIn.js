@@ -30,6 +30,7 @@ const LogIn = () => {
         localStorage.setItem('token', data.accessToken);
         localStorage.setItem('username', data.username); // Storing the username
         localStorage.setItem('userId', data.id); // Storing the user ID
+   
         navigate('/home');
         console.log(data);
       } else {
@@ -56,9 +57,8 @@ const LogIn = () => {
               onChange={(event) => setUsername(event.target.value)}
               required
               placeholder="Username"
-              error={error !== ""}
-              helperText={error}
             />
+            {/* {error && <div className="login-error-message">{error}</div>} */}
           </div>
           
           <div className="login-input-container">
@@ -69,12 +69,11 @@ const LogIn = () => {
               onChange={(event) => setPassword(event.target.value)}
               required
               placeholder="Password"
-              error={error !== ""}
-              helperText={error}
             />
             <div className="login-input-adornment" onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
               {showPassword ? <VisibilityOff /> : <Visibility />}
             </div>
+            {/* {error && <div className="login-error-message">{error}</div>} */}
           </div>
 
           {error && <div className="login-error-message">{error}</div>}

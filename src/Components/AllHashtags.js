@@ -29,7 +29,7 @@ function AllHashtags() {
       <div className="top" style={{ marginBottom: '100px'}}><TopBar /></div>
       <div className="side" style={{marginLeft:'80px'}}> <Side></Side></div>
       <div className="mid">
-      <h2>Popular Hashtags</h2>
+      <h2 style={{ color: '#FF9B00', fontFamily: 'Poppins, sans-serif' }}>Popular Hashtags</h2>
 
       {posts.map(post => (
         <div key={post.id} className="post">
