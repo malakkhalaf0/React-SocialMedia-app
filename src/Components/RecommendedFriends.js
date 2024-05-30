@@ -35,11 +35,11 @@ function RecommendedFriends({ userId, token }) {
     
     return (
         <div className="recommended-friends">
-            <h4>Suggested for you</h4>
+            <h3 style={{ color: '#FF9B00', fontFamily: 'Poppins, sans-serif' }}>Suggested for you</h3>
             <div className="friend-list">
                 {recommendedFriends.map((friend) => (
                     <div key={friend.id} className="friend-card">
-                        <Avatar>
+                        <Avatar style={{backgroundColor:'#490057'}}>
                             {friend.username.charAt(0)} {/* Displaying first character of username */}
                         </Avatar>
                         <div className="friend-info">

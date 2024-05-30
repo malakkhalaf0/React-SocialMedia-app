@@ -6,8 +6,9 @@ function SinglePost({ userId, postId }) {
   const [post, setPost] = useState(null);
   const token = localStorage.getItem('token');
 
-  useEffect(() => {
-    const fetchPost = async () => {
+ 
+    const fetchPosts = async () => {
+    if(postId){}
       try {
         const response = await fetch(`http://localhost:8080/users/${userId}/posts/${postId}`, {
           headers: {
@@ -23,17 +24,21 @@ function SinglePost({ userId, postId }) {
         console.error('Error fetching post:', error);
       }
     };
-
-    fetchPost();
+    useEffect(() => {
+    fetchPosts();
   }, [userId, postId, token]);
 
+  const handlePostChange = () => {
+   
+    fetchPosts();
+  };
   if (!post) {
     return <div>Loading...</div>;
   }
 
   return (
     <div>
-      <Post post={post} token={token} userId={userId} />
+      <Post post={post} token={token} userId={userId} onPostChange={handlePostChange}/>
     </div>
   );
 }

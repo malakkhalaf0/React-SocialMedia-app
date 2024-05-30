@@ -86,12 +86,12 @@ function EditPostForm({ open, onClose, onSubmit, post }) {
           {post.imageUrl && !removeImage && (
             <div>
               <img src={post.imageUrl} alt="Post Image" style={{ width: 100, height: 100, marginRight: 8 }} />
-              <Button onClick={handleRemoveImage} startIcon={<ClearIcon />} variant="outlined" size="small">
+              <Button onClick={handleRemoveImage} startIcon={<ClearIcon />} variant="outlined" size="small" style={{color:'#490057' , borderColor:'#490057'}}>
                 Remove Image
               </Button>
             </div>
           )}
-          <Button component="label" startIcon={<ImageIcon />} sx={{ marginRight: 1 }}>
+          <Button component="label" startIcon={<ImageIcon />} sx={{ marginRight: 1,color:'#490057' }}>
             Upload Image
             <input type="file" onChange={handleImageChange} />
           </Button>
@@ -101,20 +101,20 @@ function EditPostForm({ open, onClose, onSubmit, post }) {
           {post.videoUrl && !removeVideo && (
             <div>
               <video src={post.videoUrl} controls style={{ width: 200, height: 'auto', marginRight: 8 }} />
-              <Button onClick={handleRemoveVideo} startIcon={<ClearIcon />} variant="outlined" size="small">
+              <Button onClick={handleRemoveVideo} startIcon={<ClearIcon />} variant="outlined" size="small" style={{color:'#490057',borderColor:'#490057'}}>
                 Remove Video
               </Button>
             </div>
           )}
-          <Button component="label" startIcon={<VideoIcon />}>
+          <Button component="label" startIcon={<VideoIcon />} style={{color:'#490057'}}>
             Upload Video
             <input type="file"  onChange={handleVideoChange} />
           </Button>
         </div>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
-        <Button onClick={handleSubmit}>Submit</Button>
+        <Button onClick={onClose} style={{color:'#490057'}}>Cancel</Button>
+        <Button onClick={handleSubmit} style={{color:'#490057'}}>Submit</Button>
       </DialogActions>
     </Dialog>
   );

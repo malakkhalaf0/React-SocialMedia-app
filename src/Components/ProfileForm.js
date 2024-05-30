@@ -25,7 +25,7 @@ function ProfileForm({  profile, onUpdate }) {
     if (profile) {
       setFormData(profile);
     }
-  }, [openSnackbar]);
+  }, [profile]);
 
   const handleChange = e => {
     setFormData({
@@ -43,7 +43,7 @@ function ProfileForm({  profile, onUpdate }) {
       let url = `http://localhost:8080/users/${userId}/profiles`;
       let method = 'POST';
       if (profile) {
-        url = `http://localhost:8080/users/${userId}/profiles/${profile.id}`;
+        url = `http://localhost:8080/users/${userId}/profiles/1`;
         method = 'PUT';
       }
      
@@ -61,11 +61,11 @@ function ProfileForm({  profile, onUpdate }) {
         if (response.status === 400) {
           const errorData = await response.json();
           const errorMessage = errorData.error; // Extract the error message
-          console.log("Err" +errorMessage);
+          // console.log("Err" +errorMessage);
 
 
           const field = errorMessage.split(' ')[0];
-          console.log("field"+field)
+          // console.log("field"+field)
            // Extract the first word from the error message
            if(field === "Bio"){
             
@@ -113,15 +113,15 @@ function ProfileForm({  profile, onUpdate }) {
 
   return (
    
-    <div className="grid-container">
-    <div className="top"><TopBar/></div>
-    <div className="side"><Side></Side></div>
-    <div className="mid">
+    // <div className="grid-container">
+    // <div className="top"><TopBar/></div>
+    // <div className="side"><Side></Side></div>
+    // <div className="mid">
   
     <form className="form-container" onSubmit={handleSubmit}>
 
       <div className="form-input">
-      <div><h2>Create Profile</h2></div>
+      
         <label>Bio:</label>
         <textarea name="bio" value={formData.bio} onChange={handleChange}  style={{ border: er === 'bio' ? '2px solid red' : '1px solid #490057;' }}/>
       </div>
@@ -161,8 +161,8 @@ function ProfileForm({  profile, onUpdate }) {
       </Snackbar>
     </form>
  
-    </div>
-    </div>
+    // </div>
+    // </div>
   );
 }
 
