@@ -65,4 +65,53 @@
   .post {
     margin-bottom: 20px;
   }
+  @media (max-width: 1024px) {
+    .posts-section {
+      width: 65%;
+      margin-left: 20px;
+    }
+    .hashtags-section {
+      width: 30%;
+      margin-right: 20px;
+    }
+  }
   
+  @media (max-width: 768px) {
+    .posts-section {
+      width: 100%;
+      margin-left: 0;
+    }
+    .hashtags-section {
+      width: 100%;
+      margin-right: 0;
+      margin-top: 20px;
+    }
+    .content {
+      flex-direction: column-reverse;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .side {
+      display: none;
+    }
+    .content {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+    .posts-section, .hashtags-section {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .hashtags-list {
+      width: 400px;
+    }
+    .section-title {
+      font-size: 18px;
+    }
+    .hashtags-list li {
+      font-size: 16px;
+      padding: 6px;
+    }
+  }
