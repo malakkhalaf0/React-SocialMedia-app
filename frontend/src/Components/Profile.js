@@ -12,6 +12,8 @@ import './Friends.css';
 import FriendsList from './FriendsList';
 import './style.css';
 import CreatePostForm from './CreatePostForm';
+import SideChat from "./SideChat";
+import "./UserStyle.css"; // Import the CSS file
 
 function Profile() {
   const [postUpdated, setPostUpdated] = useState(false);
@@ -146,6 +148,7 @@ function Profile() {
       <div className="grid-container" style={{height:'100vh'}}>
       <div className="top"><TopBar /></div>
       <div className="side"><Side /></div>
+      <div className="sideee"><SideChat /></div>
       <div className="mid" >
       <h1 style={{color:'#c0bcbc',textAlign:'center',fontSize:'70px'}}> Profile Not Found </h1>
       </div>
@@ -158,6 +161,7 @@ function Profile() {
     <div className="grid-container" style={{height:'auto'}}>
       <div className="top"><TopBar /></div>
       <div className="side"><Side /></div>
+      <div className="sideee"><SideChat /></div>
       <div className="mid" >
         <div className="profile-header">
           <img src="\images\images.jpg" alt="Profile" className="profile-pic" style={{marginLeft:'140px'}}/>

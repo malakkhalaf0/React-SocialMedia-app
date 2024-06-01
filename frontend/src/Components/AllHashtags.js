@@ -4,7 +4,8 @@ import TopBar from './TopBar';
 import Side from './Side';
 import { Link } from 'react-router-dom';
 import './AllHashtags.css';
-
+import './UserStyle.css'; // Import the CSS file
+import SideChat from './SideChat';
 function AllHashtags() {
   const [posts, setPosts] = useState([]);
   const [allHashtags, setAllHashtags] = useState([]);
@@ -60,6 +61,7 @@ function AllHashtags() {
     <div className="grid-container">
       <div className="top"><TopBar /></div>
       <div className="side"><Side /></div>
+      <div className="sideee"><SideChat /></div>
       <div className="mid" style={{minHeight:'900px'}}>
         <div className="content">
 

@@ -3,31 +3,22 @@
  .body{
   background-color: #f3f3f3;
  }
+
 .post, .comments{
   border-radius: 20px;
   padding: 20px;
-
   margin-bottom: 20px;
-
   transition: all 0.3s ease;
   font-family: 'Arial', sans-serif;
-}.container {
- 
-  display: flex;
-/* To space out the two sections */
-  margin-top: 30px; /* Add margin-top to create space between the sections */
 }
 
-.posts-section {
-  /* Take up remaining space */
-  
-  width: 75%;
-  margin-left: 75px; /* Adjust the width as needed */
+.container {
+  display: flex;
+  margin-top: 30px; 
 }
 
 .recommended-friends-section {
   width: 25%;
-   /* Adjust the width as needed */
    margin-right: 30px;
 }
 
@@ -217,7 +208,7 @@ height: auto;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #490057;
+    background-color: #62006d;
     color: white;
     display: flex;
     align-items: center;
@@ -332,25 +323,17 @@ height: auto;
   display: flex;
   align-items: center;
  justify-items: center;
-  /* border-radius: 50px ;
-  border: 1px solid  #490057; */
+
   height: 30px;
 
 }
 
- 
-/* .avatar-image {
-  width: 60px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-} */
 
 .ui-like {
   --icon-size: 24px;
   --icon-secondary-color: rgb(211, 205, 205);
   --icon-hover-color: rgb(197, 192, 192);
-  --icon-primary-color: #c07600;
+  --icon-primary-color: #FBB03B;
   --icon-circle-border: 1px solid var(--icon-primary-color);
   --icon-circle-size: 35px;
   --icon-anmt-duration: 0.3s;
@@ -590,4 +573,37 @@ height: auto;
     .post p, .comments p, .post-likes p, .post-comments p {
         font-size: 0.9rem;
     }
-}
+
+
+  }
+
+  @media screen and (max-width: 1140px) {
+
+    .recommended-friends-section {
+      display: none; 
+    }
+
+    }
+    
+
+    @media screen and (max-width: 1000px) {
+
+      .recommended-friends-section {
+        display: none; 
+      }
+      }
+
+
+      @media screen and (max-width: 950px) {
+
+        .grid-container {
+          grid-template-areas:
+            'top '
+            'main'
+            'main '
+            'main ';
+
+        }        
+       
+    }
+    

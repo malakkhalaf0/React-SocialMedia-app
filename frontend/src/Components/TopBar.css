@@ -1,9 +1,7 @@
 .app-bar {
   background-color:#f3f3f3;
   color: #490057;
-      /* border-bottom: solid 1px #404872;
-  border-radius: 1px #404872 ; */
-  
+  max-width: 1500px;
   
 }
 
@@ -18,9 +16,8 @@
 
 .title {
   font-family: 'Poppins', sans-serif;
- 
-  
-}
+  font-size: 28px;
+  }
 
 
 .avatar {
@@ -55,14 +52,61 @@
 }
 .search {
   position: absolute;
-left: 23%;
+  left: 23%;
 
 
 }
-/* .app-bar {
-  position: fixed; s
-  top: 0;
-  left: 16%;
-  right: 0;
-  z-index: 1000; 
+
+@media (max-width: 1290px) {
+  .userName{
+    display: none;
+  }
+
+  }
+
+  @media (max-width: 1280px) {
+    .title{
+      font-size: 23px;
+      margin-left: 24px;
+    }
+  
+    }
+
+
+  @media (max-width: 1170px) {
+    .search{
+      left: 14%;
+      max-width: 30%;
+    }
+
+    .title{
+      margin-left: 0%;
+      left: 0%;
+    }
+
+
+  }
+
+
+@media (max-width: 768px) {
+  .search {
+    order: 2;
+    margin-top: 10px;
+  }
+}
+
+/* @media (max-width: 480px) {
+
+  .search {
+    order: 1;
+    width: 100%;
+    margin: 0;
+  }
+  .toolbar {
+  
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+   
+  }
 } */

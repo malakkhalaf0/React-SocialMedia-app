@@ -32,7 +32,7 @@ function TopBar() {
 
   const handleLogout = () => {
     localStorage.clear();
-    navigate('/');
+    navigate('/login');
   }
 
   useEffect(() => {
@@ -57,13 +57,13 @@ function TopBar() {
     <div className="app-bar">
       <div className="toolbar">
         <div className="title">
-          <h1 style={{fontSize:'28px'}}>Hello, {username}!</h1>
+          <h3>Hello, {username}!</h3>
         </div>
         <div className="search">
           <UserSearch token={token} />
         </div>
         <div className="avatar">
-          <h3>{username}</h3>
+          <h3 className='userName'>{username}</h3>
           <IconButton
             size="large"
             edge="end"

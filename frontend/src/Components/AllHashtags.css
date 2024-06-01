@@ -66,3 +66,9 @@
     margin-bottom: 20px;
   }
   
+  @media (max-width: 1110px) {
+  .hashtags-section{
+    display: none;
+  }
+
+  }

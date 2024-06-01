@@ -1,0 +1,64 @@
+.grid-container {
+    height: 100vh;
+  }
+  
+  .top, .side, .mid {
+    /* Add any additional styling if needed */
+  }
+  
+  .mid .paper {
+    padding: 20px;
+    width: 600px;
+    border-radius: 15px;
+    text-align: center;
+    margin-left: 400px;
+  }
+  
+  .mid .input-label {
+    color: #490057 !important;
+  }
+  
+  .mid .input-field-focused .MuiOutlinedInput-root.Mui-focused fieldset {
+    border-color: #490057 !important;
+  }
+  
+  .save-button {
+    margin-top: 20px;
+    background-color: #490057 !important;
+  }
+  
+  @media (max-width: 1170px) {
+    .mid .paper {
+      width: 50%; /* Make the paper element take full width */
+      margin-left: 350px; /* Remove the left margin */
+      padding: 10px; /* Adjust padding as needed */
+      box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+    }
+
+    .side{
+        display: none;
+    }
+
+  }
+
+  @media (max-width: 1130px) {
+
+    .mid .paper {
+      width: 50%; /* Make the paper element take full width */
+      margin-left: 30%; /* Remove the left margin */
+      padding: 10px; /* Adjust padding as needed */
+      box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+    }
+
+  }
+
+
+  @media (min-width: 1170px) {
+
+    .sideee{
+        display: none;
+    }
+
+}
+  
+  

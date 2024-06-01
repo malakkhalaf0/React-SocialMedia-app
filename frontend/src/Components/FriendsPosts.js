@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import UserPosts from './UserPosts';
 import TopBar from './TopBar';
 import Side from './Side';
+import './UserStyle.css'; // Import the CSS file
+import SideChat from './SideChat';
 
 function FriendsPosts() {
   const [posts, setPosts] = useState([]);
@@ -32,6 +34,9 @@ function FriendsPosts() {
         <div className="side" style={{ marginLeft: '80px' }}>
           <Side />
         </div>
+
+        <div className="sideee"><SideChat /></div>
+
         <div className="mid" style={{minHeight:'900px'}}>
           {posts.length === 0 ? (
             <h2 style={{color:'#c0bcbc',textAlign:'center',fontSize:'35px'}}> Add friends to Explore their posts </h2>
