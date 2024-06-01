@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar'; // Import Avatar component
 import './FriendsList.css'; // Import the CSS file
-import Friends from './Friends';
+import Friendss from './Friendss';
 
 function FriendsList({ user, token ,  friendUpdated}) {
   const [friends, setFriends] = useState([]);
@@ -32,6 +32,15 @@ function FriendsList({ user, token ,  friendUpdated}) {
     }
   };
 
+  if (friends.length === 0) {
+    return (
+      <>
+      <h2>Friends</h2>
+      <h4 style={{color:'#c0bcbc'}}>No Friends Found </h4>
+      </>
+    ); // Return null to not render anything if friends list is empty
+  }
+
   return (
     <div className="recommended-friendsssss">
       <h2>Friends</h2>
@@ -49,7 +58,9 @@ function FriendsList({ user, token ,  friendUpdated}) {
               {friend.id === parseInt(userIdp) ? (
                 <></>
               ) : (
-                <Friends user={friend} token={token} />
+                
+                <Friendss user={friend} token={token}  />
+              
               )}
             </div>
           </div>

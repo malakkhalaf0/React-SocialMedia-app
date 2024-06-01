@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Paper, TextField, Typography, Button, IconButton, Input, InputLabel, InputAdornment, FormControl } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { Typography } from '@mui/material';
+import './LogIn.css'; // Import the CSS file
 
 const LogIn = () => {
   const [username, setUsername] = useState("");
@@ -11,19 +12,9 @@ const LogIn = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const paperStyle = {
-    padding: '50px 20px',
-    width: 400,
-    minHeight: 450,
-    margin: '20px auto',
-    backgroundColor: 'rgba(255, 255, 255, 0)', // Transparent white background
-    backdropFilter: 'blur(9px)',
-    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)', // Background blur effect
-  };
-  const formStyle = { display: 'flex', flexDirection: 'column', gap: '20px' };
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event) => event.preventDefault();
-
+console.log(localStorage)
   const login = async (event) => {
     event.preventDefault();
 
@@ -40,9 +31,9 @@ const LogIn = () => {
         localStorage.setItem('username', data.username); // Storing the username
         localStorage.setItem('userId', data.id); // Storing the user ID
         navigate('/home');
-        console.log(data)
+        console.log(data);
       } else {
-        setError("Your Username or Password is wrong !");
+        setError("Your Username or Password is wrong!");
       }
     } catch (err) {
       setError(err.message);
@@ -50,47 +41,52 @@ const LogIn = () => {
   };
 
   return (
-    <div className="Register" style={{ backgroundSize: 'cover', backgroundImage: ' url(http://localhost/m.png)', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <Paper elevation={3} style={paperStyle}>
-        <Typography variant="h5" gutterBottom style={{ textAlign: 'center', fontWeight: 'bold', color: '#0068bd' }}>
-          Sign In
-        </Typography>
-        <br />
-        <form style={formStyle} onSubmit={login}>
-          <TextField
-            id="username"
-            label="Username"
-            variant="standard"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-            required
-            error={error !== ""}
-            helperText={error}
-          />
-          <FormControl variant="standard" required>
-            <InputLabel>Password</InputLabel>
-            <Input
+    <div className="login-container" style={{ backgroundSize: 'cover', backgroundImage: 'url(http://localhost/t.png)', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' , background: ' #f3f3f3'}}>
+       <p className="header">Trek<strong style={{color:'#fbb03b'}}>Link</strong></p>
+      <div className="login-paper">
+        
+        <h1 className="login-title">
+          <strong>Sign In</strong> 
+        </h1>
+   
+        <form className="login-form" onSubmit={login}>
+          <div className="login-input-container">
+            <input
+              id="username"
+              type="text"
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+              required
+              placeholder="Username"
+              error={error !== ""}
+              helperText={error}
+            />
+          </div>
+          
+          <div className="login-input-container">
+            <input
               id="password"
               type={showPassword ? 'text' : 'password'}
               value={password}
               onChange={(event) => setPassword(event.target.value)}
+              required
+              placeholder="Password"
               error={error !== ""}
               helperText={error}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
             />
-          </FormControl>
-          <Button type="submit" variant="contained" color="primary">Sign In</Button>
-          <Typography style={{ textAlign: 'center', fontWeight: 'bold', color: '#0068bd' }}>
-            Don't Have an Account? <Link to="/signup">Sign Up</Link>
+            <div className="login-input-adornment" onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
+              {showPassword ? <Visibility /> : <VisibilityOff/>}
+            </div>
+          </div>
+
+          {error && <div className="login-error-message">{error}</div>}
+
+          <button className="login-button" type="submit">Sign In</button>
+          <Typography className="login-footer">
+            Don't Have an Account? <Link to="/signup" className="login-link">Sign Up</Link>
           </Typography>
         </form>
-      </Paper>
+      </div>
     </div>
   );
 };

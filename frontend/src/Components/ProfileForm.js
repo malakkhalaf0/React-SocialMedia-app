@@ -3,13 +3,13 @@ import Snackbar from '@mui/material/Snackbar';
 import { useParams } from 'react-router-dom'; 
 import MuiAlert from '@mui/material/Alert';
 import './myfile.css'; // Import the CSS file
-
-
-function ProfileForm({ token, profile, onUpdate }) {
+import TopBar from './TopBar';
+import Side from './Side';
+function ProfileForm({  profile, onUpdate }) {
   const { userId } = useParams();
   const [errorsa, setErrorsa] = useState("");
   const [er, setEr] = useState("");
-
+  const token = localStorage.getItem('token');
   // State to store error messages for each field
   const [formData, setFormData] = useState({
     bio: '',
@@ -25,7 +25,7 @@ function ProfileForm({ token, profile, onUpdate }) {
     if (profile) {
       setFormData(profile);
     }
-  }, [openSnackbar]);
+  }, [profile]);
 
   const handleChange = e => {
     setFormData({
@@ -43,7 +43,7 @@ function ProfileForm({ token, profile, onUpdate }) {
       let url = `http://localhost:8080/users/${userId}/profiles`;
       let method = 'POST';
       if (profile) {
-        url = `http://localhost:8080/users/${userId}/profiles/${profile.id}`;
+        url = `http://localhost:8080/users/${userId}/profiles/1`;
         method = 'PUT';
       }
      
@@ -61,11 +61,11 @@ function ProfileForm({ token, profile, onUpdate }) {
         if (response.status === 400) {
           const errorData = await response.json();
           const errorMessage = errorData.error; // Extract the error message
-          console.log("Err" +errorMessage);
+          // console.log("Err" +errorMessage);
 
 
           const field = errorMessage.split(' ')[0];
-          console.log("field"+field)
+          // console.log("field"+field)
            // Extract the first word from the error message
            if(field === "Bio"){
             
@@ -112,8 +112,16 @@ function ProfileForm({ token, profile, onUpdate }) {
   };
 
   return (
+   
+    // <div className="grid-container">
+    // <div className="top"><TopBar/></div>
+    // <div className="side"><Side></Side></div>
+    // <div className="mid">
+  
     <form className="form-container" onSubmit={handleSubmit}>
+
       <div className="form-input">
+      
         <label>Bio:</label>
         <textarea name="bio" value={formData.bio} onChange={handleChange}  style={{ border: er === 'bio' ? '2px solid red' : '1px solid #490057;' }}/>
       </div>
@@ -152,6 +160,9 @@ function ProfileForm({ token, profile, onUpdate }) {
         </MuiAlert>
       </Snackbar>
     </form>
+ 
+    // </div>
+    // </div>
   );
 }
 

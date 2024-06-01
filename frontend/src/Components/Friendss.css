@@ -1,0 +1,24 @@
+.follow-b {
+    border: 1px solid #490057;
+    background-color: #490057;
+    color: #f3f3f3;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 172px;
+    height: 44.67px;
+    font-size: 16px;
+  }
+  
+  .follow{
+    background-color: #f3f3f3;
+    border: 1px solid #490057;
+   color: #490057;
+    padding: 10px 20px;
+    border-radius: 10px;
+    width:172px;
+    height: 44.67px;
+    font-size: 16px;
+  }
+  

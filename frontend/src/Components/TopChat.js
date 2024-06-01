@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import UserSearch from './UserSearch';
 import { useNavigate } from 'react-router-dom';
 
-function TopBar() {
+function TopChat() {
   const [anchorEl, setAnchorEl] = useState(null);
   const token = localStorage.getItem('token');
   const username = localStorage.getItem('username');
@@ -56,13 +56,13 @@ function TopBar() {
   return (
     <div className="app-bar">
       <div className="toolbar">
-        <div className="title">
-          <h1 style={{fontSize:'28px'}}>Hello, {username}!</h1>
+        <div >
+          
         </div>
-        <div className="search">
+        <div className="search" style={{left:'20px'}}>
           <UserSearch token={token} />
         </div>
-        <div className="avatar">
+        <div className="avatar" style={{right:'20px'}}>
           <h3>{username}</h3>
           <IconButton
             size="large"
@@ -90,4 +90,4 @@ function TopBar() {
   );
 }
 
-export default TopBar;
+export default TopChat;

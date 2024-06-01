@@ -1,24 +1,13 @@
-.profile-page {
-  display: flex;
-}
-
-
-.content {
-  flex: 1;
-  padding: 20px;
-}
-
-.edit {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
 
 .profile-header {
   display: flex;
   align-items: center;
+  width: 100%;
   padding: 35px;
+
   border-radius: 10px;
+  background-color: #f3f3f3;
+  box-sizing: border-box;
 }
 
 .profile-info {
@@ -26,6 +15,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+
 }
 
 .profile-details-left {
@@ -42,18 +32,11 @@
 .profile-details-left h4 {
   margin: 5px 0 10px;
   color: #750373;
- 
 }
 
 .profile-actions {
   display: flex;
   gap: 10px;
-}
-
-.profile-details {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
 }
 
 .profile-pic {
@@ -63,7 +46,7 @@
   margin-right: 20px;
 }
 
-.edit-button button{
+.edit-button button {
   border: 1px solid #490057;
   background-color: #f3f3f3;
   color: #490057;
@@ -73,11 +56,8 @@
   transition: all 0.3s ease;
   width: 172px;
   height: 44.67px;
-  font-size: 16px;  
-  cursor: pointer;
-  transition: ease-out 0.5s;
+  font-size: 16px;
 }
-
 
 .edit-button button:hover {
   color: white;
@@ -87,55 +67,51 @@
 .edit-button button:active {
   transform: scale(0.9);
 }
-.edit-button button {
-  text-transform: capitalize;
-}
-
 
 .profile-details {
+  max-width: 100%;
   display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
+  /* justify-content: space-between; */
+ 
+margin-left: 160px;
+  justify-content: center;
+  background-color: #f3f3f3;
+  box-sizing: border-box;
+}
+
+.about, .posts, .suggestions {
+  flex: none;
+  border-radius: 10px;
+  box-sizing: border-box;
 }
 
 .about {
-  width: 15%;
-  height: 10%;
-
+  width: 160px;
+  color: #490057;
+  border: 1px solid #f3f3f3;
+  background-color: #ede9ed;
+  padding: 10px;
+  height: fit-content;
 }
 
 .posts {
-  width: 55%;
+
   color: #490057;
   border: 1px solid #f3f3f3;
-
+  background-color: #f3f3f3;
   border-radius: 10px;
-  padding-right: 40px;
+  padding: 10px;
+  margin-right: 20px;
 }
 
 .suggestions {
-
-  width: 25%;
-  margin-right: 15px;
+width: 290px;
   color: #490057;
   border: 1px solid #f3f3f3;
   background-color: #ede9ed;
   padding: 10px;
-  border-radius: 10px;
-  height: 50%;
-  
+  height: fit-content;
 }
-
-.about {
-  color: #490057;
-  border: 1px solid #f3f3f3;
-  background-color: #ede9ed;
-  border-radius: 10px;
-  padding: 10px;
-  margin-left: 15px;
-}
-
-
 
 .my-button button {
   color: #490057;
@@ -165,3 +141,8 @@
 .profile-details .about ul li svg {
   margin-right: 5px;
 }
+.edit-button button {
+  text-transform: capitalize;
+}
+
+

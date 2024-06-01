@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Friends.css'; // Import your CSS file
+import './Friendss.css'; // Import your CSS file
 
 function Friends({ user, token, onfriendUpdated = () => {} }) {
   const [friends, setFriends] = useState([]);
@@ -84,7 +84,7 @@ function Friends({ user, token, onfriendUpdated = () => {} }) {
 
   return (
     <div>
-      <button className={isFriend() ? 'follow-followed' : 'follow-button'} onClick={handleFollow}>
+      <button className={isFriend() ? 'follow' : 'follow-b'} onClick={handleFollow}>
         {isFriend() ? 'Unfollow' : 'Follow'}
       </button>
     </div>

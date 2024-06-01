@@ -1,27 +1,30 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { Link, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
 import Toolbar from '@mui/material/Toolbar';
-import HomeIcon from '@mui/icons-material/Home';
-import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import HomeIcon from '@mui/icons-material/Home';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import PeopleIcon from '@mui/icons-material/People';
+import ChatIcon from '@mui/icons-material/Chat';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const drawerWidth = 240;
 
 function Side(props) {
   const { window } = props;
+  const location = useLocation(); // Use useLocation hook to get the current path
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+  const userId = localStorage.getItem('userId');
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -48,29 +51,47 @@ function Side(props) {
         </h1>
       </Box>
       <Toolbar />
-      <Divider />
-
       <List>
-        {['Home', 'Popular Hashtags', 'My Friends', 'Setting'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton sx={{
-              '&:hover': {
+        {[
+          { text: 'Home', icon: <HomeIcon />, link: '/home' },
+          {},
+          { text: 'Popular Hashtags', icon: <TrendingUpIcon />, link: '/popular-hashtags' },
+        {},
+          { text: 'Following', icon: <PeopleIcon />, link: '/FriendsPosts' },
+          {},
+          { text: 'Chat', icon: <ChatIcon />, link: '/chat' },
+          {},
+          { text: 'Setting', icon: <SettingsIcon />, link: `/users/${userId}` }
+        ].map((item, index) => (
+          <ListItem key={item.text} disablePadding>
+            <ListItemButton
+              component={Link}
+              to={item.link}
+              sx={{
+                '&:hover': {
+                  '& .MuiListItemIcon-root': {
+                    color: '#FBB03B',
+                  },
+                  '& .MuiListItemText-primary': {
+                    color: '#FBB03B',
+                  },
+                },
                 '& .MuiListItemIcon-root': {
-                  color: '#FBB03B',
+                  color: location.pathname === item.link ? '#FBB03B' : '#D9D9D9',
                 },
                 '& .MuiListItemText-primary': {
-                  color: '#FBB03B',
+                  color: location.pathname === item.link ? '#FBB03B' : '#D9D9D9',
                 },
-              },
-            }}>
-              <ListItemIcon sx={{ color: '#D9D9D9' }}>{index % 2 === 0 ? <HomeIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} sx={{ color: '#D9D9D9', fontFamily: 'Poppins, sans-serif' }} />
+              }}
+            >
+              <ListItemIcon sx={{ color: location.pathname === item.link ? '#FBB03B' : '#D9D9D9' }}>
+                {item.icon}
+              </ListItemIcon>
+              <ListItemText primary={item.text} sx={{ color: location.pathname === item.link ? '#FBB03B' : '#D9D9D9', fontFamily: 'Poppins, sans-serif' }} />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
-
-      <Divider />
     </div>
   );
 
@@ -79,7 +100,6 @@ function Side(props) {
   return (
     <Box>
       <CssBaseline />
-      
       <Drawer
         container={container}
         variant="temporary"
@@ -90,7 +110,7 @@ function Side(props) {
           keepMounted: true,
         }}
         sx={{
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, bgcolor: '#490057', borderRadius: '0 24px 24px 0' },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', bgcolor: '#490057', borderRadius: '0 24px 24px 0' },
         }}
       >
         {drawer}
@@ -98,7 +118,7 @@ function Side(props) {
       <Drawer
         variant="permanent"
         sx={{
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', bgcolor: '#490057', width: drawerWidth, borderRadius: '0 18px 0px 0' },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', bgcolor: '#490057', borderRadius: '0 18px 0px 0' },
         }}
         open
       >
@@ -113,80 +133,3 @@ Side.propTypes = {
 };
 
 export default Side;
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import * as React from 'react';
-// import PropTypes from 'prop-types';
-// import './Side.css';
-
-// function Side(props) {
-//   const { window } = props;
-//   const [mobileOpen, setMobileOpen] = React.useState(false);
-//   const [isClosing, setIsClosing] = React.useState(false);
-
-//   const handleDrawerClose = () => {
-//     setIsClosing(true);
-//     setMobileOpen(false);
-//   };
-
-//   const handleDrawerTransitionEnd = () => {
-//     setIsClosing(false);
-//   };
-
-//   const drawer = (
-//     <div className="drawer">
-//       <div className="drawer-header">
-//         <button className="icon-button" aria-label="open drawer">
-//           {/* Placeholder for an icon */}
-//         </button>
-//         <h1 className="drawer-title">TrekLink</h1>
-//       </div>
-//       <div className="toolbar"></div>
-//       <div className="divider"></div>
-//       <ul className="drawer-list">
-//         {['Home', 'Popular Hashtags', 'My Friends', 'Setting'].map((text, index) => (
-//           <li key={text} className="drawer-list-item">
-//             <button className="list-item-button">
-//               <span className={`list-item-icon ${index % 2 === 0 ? 'home-icon' : 'mail-icon'}`}></span>
-//               <span className="list-item-text">{text}</span>
-//             </button>
-//           </li>
-//         ))}
-//       </ul>
-//       <div className="divider"></div>
-//     </div>
-//   );
-
-//   const container = window !== undefined ? () => window().document.body : undefined;
-
-//   return (
-//     <div className="drawer-container">
-//       <nav className={`drawer-nav ${mobileOpen ? 'drawer-open' : ''}`}>
-//         <div className="drawer-overlay" onClick={handleDrawerClose}></div>
-//         <div className={`drawer-paper ${isClosing ? 'drawer-closing' : ''}`} onTransitionEnd={handleDrawerTransitionEnd}>
-//           {drawer}
-//         </div>
-//       </nav>
-//       <div className="permanent-drawer">
-//         {drawer}
-//       </div>
-//     </div>
-//   );
-// }
-
-// Side.propTypes = {
-//   window: PropTypes.func,
-// };
-
-// export default Side;
