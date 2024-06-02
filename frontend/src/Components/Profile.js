@@ -14,6 +14,7 @@ import './style.css';
 import CreatePostForm from './CreatePostForm';
 import SideChat from "./SideChat";
 import "./UserStyle.css"; // Import the CSS file
+import { Avatar } from '@mui/material';
 
 function Profile() {
   const [postUpdated, setPostUpdated] = useState(false);
