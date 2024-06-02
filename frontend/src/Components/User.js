@@ -155,7 +155,9 @@ function User({ userId }) {
           onClick={toggleMenu}
           style={{
             backgroundColor: buttonToggled ? "" : "",
-            color: buttonToggled ? "orange" : "#490057",
+            color: buttonToggled ? "transparent" : "#490057",
+            width: buttonToggled ? "100px" : "30px",
+            height: buttonToggled ? "100px" : "30px",
           }}
         >
           <MenuIcon style={{ width: "30px", height: "30px" }} />
