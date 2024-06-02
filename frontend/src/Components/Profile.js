@@ -5,7 +5,7 @@ import Side from './Side';
 import { useParams } from 'react-router-dom';
 import { Typography, Button, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import Friends from './Friends';
-import { PersonOutline, CakeOutlined, LocationOnOutlined } from '@mui/icons-material';
+import { PersonOutline, CakeOutlined, LocationOnOutlined, Menu as MenuIcon } from '@mui/icons-material';
 import './ProfilePage.css'; // Import the CSS for styles
 import UserPosts from './UserPosts';
 import './Friends.css';
@@ -17,26 +17,19 @@ import "./UserStyle.css"; // Import the CSS file
 
 function Profile() {
   const [postUpdated, setPostUpdated] = useState(false);
-
   const [postp, setPostUpdatedp] = useState(true);
-  const handlePostCreated = () => {
-    setPostUpdated(!postUpdated);
-  };
-
   const [friendUpdated, setFriendUpdated] = useState(false);
-  const handleFriendUpdated = () => {
-    setFriendUpdated(!friendUpdated);
-  };
-
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [users, setUsers] = useState([]);
-
+  const [showDialog, setShowDialog] = useState(false);
   const [profileUser, setProfileUser] = useState(null);
   const { userId } = useParams();
   const userIdp = localStorage.getItem('userId');
   const token = localStorage.getItem('token');
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [buttonToggled, setButtonToggled] = useState(false);
 
   useEffect(() => {
     fetchAllProfiles();
@@ -115,14 +108,38 @@ function Profile() {
     setShowForm(false);
   };
 
+  
+  // Define the handleFriendUpdated function
+  const handleFriendUpdated = () => {
+    setFriendUpdated(!friendUpdated);
+  };
+
+  // Define the handlePostCreated function
+  const handlePostCreated = () => {
+    setPostUpdated(!postUpdated);
+  };
+
   const handleUpdate = updatedProfileData => {
     setProfile(updatedProfileData);
     setShowForm(false);
   };
 
+  const handleDialogOpen = () => {
+    setShowDialog(true);
+  };
+
+  const handleDialogClose = () => {
+    setShowDialog(false);
+  };
+
   const getUserName = () => {
     const user = users.find(user => user.id === parseInt(userId));
     return user ? user.username : 'Unknown';
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+    setButtonToggled(!buttonToggled);
   };
 
   if (loading) {
@@ -132,37 +149,44 @@ function Profile() {
   if (!profile && userId === userIdp) {
     return (
       <div className="grid-container" style={{height:'100vh'}}>
-      <div className="top"><TopBar /></div>
-      <div className="side"><Side /></div>
-      <div className="mid" >
-     
-        <ProfileForm   profile={null}  onUpdate={handleUpdate} />
-      </div>
+        <div className="top"><TopBar /></div>
+        <div className="side"><Side /></div>
+        <div className="mid">
+          <ProfileForm profile={null} onUpdate={handleUpdate} />
+        </div>
       </div>
     );
-  
-
-  }
-  else if (!profile && userId !== userIdp){
+  } else if (!profile && userId !== userIdp) {
     return (
       <div className="grid-container" style={{height:'100vh'}}>
-      <div className="top"><TopBar /></div>
-      <div className="side"><Side /></div>
-      <div className="sideee"><SideChat /></div>
-      <div className="mid" >
-      <h1 style={{color:'#c0bcbc',textAlign:'center',fontSize:'70px'}}> Profile Not Found </h1>
-      </div>
+        <div className="top"><TopBar /></div>
+        <div className="side"><Side /></div>
+        <div className="sideee"><SideChat /></div>
+        <div className="mid">
+          <h1 style={{color:'#c0bcbc',textAlign:'center',fontSize:'70px'}}> Profile Not Found </h1>
+        </div>
       </div>
     );
-
   }
 
   return (
     <div className="grid-container" style={{height:'auto'}}>
       <div className="top"><TopBar /></div>
-      <div className="side"><Side /></div>
-      <div className="sideee"><SideChat /></div>
-      <div className="mid" >
+      <div className="side-toggle-button">
+        <Button 
+          onClick={toggleMenu} 
+          style={{ 
+            backgroundColor: buttonToggled ? "" : "",
+            color: buttonToggled ? "transparent" : "#490057",
+            width: buttonToggled ? "100px" : "30px",
+            height: buttonToggled ? "100px" : "30px",
+          }}
+        >
+          <MenuIcon style={{ width:"30px", height:"30px"}}/>
+        </Button>
+      </div>
+      <div className={`side ${menuOpen ? 'open' : ''}`}><Side /></div>
+      <div className="mid">
         <div className="profile-header">
           <img src="\images\images.jpg" alt="Profile" className="profile-pic" style={{marginLeft:'140px'}}/>
           <div className="profile-info">
@@ -175,6 +199,9 @@ function Profile() {
                 <div className='edit'>
                   <div className='edit-button'>
                     <Button onClick={handleEditProfile}>Edit Profile</Button>
+                  </div>
+                  <div className="suggestions22">
+                    <button className='sugBtn' onClick={handleDialogOpen}>Show Friends</button>
                   </div>
                 </div>
               ) : (
@@ -192,10 +219,18 @@ function Profile() {
                 </DialogActions>
               </Dialog>
             </div>
+            <Dialog open={showDialog} onClose={handleDialogClose}>
+              <DialogContent>
+                <FriendsList user={profileUser} token={token} friendUpdated={friendUpdated} />
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleDialogClose}>Close</Button>
+              </DialogActions>
+            </Dialog>
           </div>
         </div>
         <div className="profile-details">
-        <div className="about">
+          <div className="about">
             <h3>About</h3>
             <ul>
               <li><PersonOutline /> {profile?.gender}</li>
@@ -203,9 +238,7 @@ function Profile() {
               <li><LocationOnOutlined /> {profile?.city}</li>
             </ul>
           </div>
-         
-          <div className="posts" >
-         
+          <div className="posts">
             {userId === userIdp && (
               <CreatePostForm token={token} userId={userIdp} onPostCreated={handlePostCreated} />
             )}
@@ -214,6 +247,14 @@ function Profile() {
           <div className="suggestions">
             <FriendsList user={profileUser} token={token} friendUpdated={friendUpdated} />
           </div>
+          <Dialog open={showDialog} onClose={handleDialogClose}>
+            <DialogContent>
+              <FriendsList user={profileUser} token={token} friendUpdated={friendUpdated} />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleDialogClose}>Close</Button>
+            </DialogActions>
+          </Dialog>
         </div>
       </div>
     </div>

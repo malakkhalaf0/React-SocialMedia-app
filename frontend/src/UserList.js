@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { Link } from "react-router-dom";
+import { Link  } from "react-router-dom";
 import TopBar from "./Components/TopBar";
 import Side from "./Components/Side";
 import "./Components/style.css";
@@ -9,18 +9,26 @@ import UserPosts from "./Components/UserPosts";
 import RecommendedFriends from "./Components/RecommendedFriends";
 import SideChat from "./Components/SideChat";
 import "./Components/UserStyle.css"; // Import the CSS file
+import { Menu as MenuIcon } from '@mui/icons-material';
+import {  Button } from '@mui/material';
 
 function UserList() {
   const [users, setUsers] = useState([]);
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
-
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [buttonToggled, setButtonToggled] = useState(false);
   const [postUpdated, setPostUpdated] = useState(false);
   const [allHashtags, setAllHashtags] = useState([]);
+
   const handlePostCreated = () => {
     setPostUpdated(!postUpdated);
   };
-
+  
+    const toggleMenu = () => {
+      setMenuOpen(!menuOpen);
+      setButtonToggled(!buttonToggled);
+    };
   useEffect(() => {
     fetch("http://localhost:8080/users", {
       headers: {
@@ -68,13 +76,22 @@ function UserList() {
       <div className="top" style={{ marginBottom: "100px" }}>
         <TopBar />
       </div>
-      <div className="side">
-        {" "}
-        <Side></Side>
+
+      <div className="side-toggle-button">
+        <Button 
+          onClick={toggleMenu} 
+          style={{ 
+            backgroundColor: buttonToggled ? "" : "",
+            color: buttonToggled ? "transparent" : "#490057",
+            width: buttonToggled ? "100px" : "30px",
+            height: buttonToggled ? "100px" : "30px",
+          }}
+        >
+          <MenuIcon style={{ width:"30px", height:"30px"}}/>
+        </Button>
       </div>
-      <div className="sideee">
-        <SideChat />
-      </div>
+      <div className={`side ${menuOpen ? 'open' : ''}`}><Side /></div>
+
       <div className="mid">
         <div className="container">
           <div className="posts-section">

@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.root-container {
+  background-color: #f3f3f3;
+  min-width: 1000px; /* Change this to the desired color */
+  min-height: 2000px;
+}

@@ -5,13 +5,21 @@ import Side from './Side';
 import { Link } from 'react-router-dom';
 import './AllHashtags.css';
 import './UserStyle.css'; // Import the CSS file
-import SideChat from './SideChat';
+import { Menu as MenuIcon } from '@mui/icons-material';
+import {  Button } from '@mui/material';
+
 function AllHashtags() {
   const [posts, setPosts] = useState([]);
   const [allHashtags, setAllHashtags] = useState([]);
   const token = localStorage.getItem('token');
-
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [buttonToggled, setButtonToggled] = useState(false);
  
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+    setButtonToggled(!buttonToggled);
+  };
+  
     // Fetch posts related to all hashtags
     const fetchPosts = async () => {
       try {
@@ -57,11 +65,25 @@ function AllHashtags() {
     fetchAllHashtags();
   }, [token]);
 
+
   return (
     <div className="grid-container">
       <div className="top"><TopBar /></div>
-      <div className="side"><Side /></div>
-      <div className="sideee"><SideChat /></div>
+      <div className="side-toggle-button">
+        <Button 
+          onClick={toggleMenu} 
+          style={{ 
+            backgroundColor: buttonToggled ? "" : "",
+            color: buttonToggled ? "transparent" : "#490057",
+            width: buttonToggled ? "100px" : "30px",
+            height: buttonToggled ? "100px" : "30px",
+          }}
+        >
+          <MenuIcon style={{ width:"30px", height:"30px"}}/>
+        </Button>
+      </div>
+      <div className={`side ${menuOpen ? 'open' : ''}`}><Side /></div>
+
       <div className="mid" style={{minHeight:'900px'}}>
         <div className="content">
 

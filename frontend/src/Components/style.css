@@ -577,6 +577,8 @@ height: auto;
 
   }
 
+
+
   @media screen and (max-width: 1140px) {
 
     .recommended-friends-section {
@@ -593,17 +595,27 @@ height: auto;
       }
       }
 
-
-      @media screen and (max-width: 950px) {
-
-        .grid-container {
-          grid-template-areas:
-            'top '
-            'main'
-            'main '
-            'main ';
-
-        }        
-       
-    }
+      .menu-button {
+        display: none;
+        background-color: #490057;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 20px;
+        border-radius: 5px;
+      }
+      
+      @media (max-width: 1110px) {
+        /* .side {
+          display: none;
+        } */
+        .menu-button {
+          display: block;
+        }
+        /* .side.visible {
+          display: block;
+        } */
+      }
+      
     

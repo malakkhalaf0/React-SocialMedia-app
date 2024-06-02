@@ -4,13 +4,13 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import TopBar from './TopBar';
-import Side from './Side';
-import './UserStyle.css'; // Import the CSS file
-import { useNavigate } from 'react-router-dom';
+import TopBar from "./TopBar";
+import Side from "./Side";
+import "./UserStyle.css"; // Import the CSS file
+import { useNavigate } from "react-router-dom";
 import { Paper } from "@mui/material";
-import './Chat.css';
-import SideChat from './SideChat';
+import { Menu as MenuIcon } from "@mui/icons-material";
+import "./ProfilePage.css";
 
 function User({ userId }) {
   const [user, setUser] = useState(null);
@@ -27,7 +27,15 @@ function User({ userId }) {
   const [emailHelperText, setEmailHelperText] = useState("");
   const [passwordError, setPasswordError] = useState(false);
   const [passwordHelperText, setPasswordHelperText] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [buttonToggled, setButtonToggled] = useState(false);
+
   const navigate = useNavigate();
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+    setButtonToggled(!buttonToggled);
+  };
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -65,10 +73,13 @@ function User({ userId }) {
     setPasswordHelperText("");
 
     // Define the pattern for a strong password
-    const passwordPattern = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).{6,40}$/;
+    const passwordPattern =
+      /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).{6,40}$/;
     if (!password.match(passwordPattern)) {
       setPasswordError(true);
-      setPasswordHelperText("Password must be strong. Include at least one digit, one lowercase letter, one uppercase letter, one special character, and be at least 8 characters long.");
+      setPasswordHelperText(
+        "Password must be strong. Include at least one digit, one lowercase letter, one uppercase letter, one special character, and be at least 8 characters long."
+      );
       return;
     }
 
@@ -92,17 +103,17 @@ function User({ userId }) {
           setEmailError(true);
           setEmailHelperText("Email is wrong");
         }
-      } else { 
+      } else {
         // Optionally, handle success
         console.log("User updated successfully");
         setOriginalUsername(username); // Update the original username
         setOriginalEmail(email); // Update the original email
-        localStorage.setItem('username', username);
+        localStorage.setItem("username", username);
         setSnackbarOpen(true);
-        localStorage.removeItem('token'); 
+        localStorage.removeItem("token");
         // navigate('/login');
         setTimeout(() => {
-          window.location.href = '/login'; // Redirect to login page
+          window.location.href = "/login"; // Redirect to login page
         }, 2000);
       }
     } catch (error) {
@@ -120,12 +131,44 @@ function User({ userId }) {
 
   return (
     <div className="grid-container">
-      <div className="top"><TopBar/></div>
-      <div className="side"><Side /></div>
-      <div className="sideee"><SideChat /></div>
+      <div className="top">
+        <TopBar />
+      </div>
+      <div className="side-toggle-button">
+        <Button
+          onClick={toggleMenu}
+          style={{
+            backgroundColor: buttonToggled ? "" : "",
+            color: buttonToggled ? "transparent" : "#490057",
+            width: buttonToggled ? "100px" : "30px",
+            height: buttonToggled ? "100px" : "30px",
+          }}
+        >
+          <MenuIcon style={{ width: "30px", height: "30px" }} />
+        </Button>
+      </div>
+      <div className={`side ${menuOpen ? "open" : ""}`}>
+        <Side />
+      </div>
+      <div className="side-toggle-button">
+        <Button
+          onClick={toggleMenu}
+          style={{
+            backgroundColor: buttonToggled ? "" : "",
+            color: buttonToggled ? "orange" : "#490057",
+          }}
+        >
+          <MenuIcon style={{ width: "30px", height: "30px" }} />
+        </Button>
+      </div>
+      <div className={`side ${menuOpen ? "open" : ""}`}>
+        <Side />
+      </div>
       <div className="mid">
         <Paper className="paper" elevation={3}>
-          <Typography variant="h4" gutterBottom sx={{ color: '#490057' }}>Edit Account Info</Typography>
+          <Typography variant="h4" gutterBottom sx={{ color: "#490057" }}>
+            Edit Account Info
+          </Typography>
           <TextField
             margin="normal"
             label="Username"
@@ -136,7 +179,7 @@ function User({ userId }) {
             error={usernameError}
             helperText={usernameHelperText}
             InputLabelProps={{
-              className: 'input-label'
+              className: "input-label",
             }}
             className="input-field-focused"
           />
@@ -150,7 +193,7 @@ function User({ userId }) {
             error={emailError}
             helperText={emailHelperText}
             InputLabelProps={{
-              className: 'input-label'
+              className: "input-label",
             }}
             className="input-field-focused"
           />
@@ -164,7 +207,7 @@ function User({ userId }) {
             error={passwordError}
             helperText={passwordHelperText}
             InputLabelProps={{
-              className: 'input-label'
+              className: "input-label",
             }}
             className="input-field-focused"
           />
