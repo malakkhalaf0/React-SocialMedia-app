@@ -14,7 +14,7 @@ function UserList() {
   const userId = localStorage.getItem('userId');
   
   const [postUpdated, setPostUpdated] = useState(false);
-  
+  const [allHashtags, setAllHashtags] = useState([]);
   const handlePostCreated = () => {
     setPostUpdated(!postUpdated);
   };
@@ -40,6 +40,27 @@ function UserList() {
       });
   }, [token]);
 
+  useEffect(() => {
+    // Fetch all hashtags
+    const fetchAllHashtags = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/hashtags/all`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        if (!response.ok) {
+          throw new Error('Failed to fetch all hashtags');
+        }
+        const data = await response.json();
+        setAllHashtags(data);
+      } catch (error) {
+        console.error('Error fetching all hashtags:', error);
+      }
+    };
+
+    fetchAllHashtags();
+  }, [token]);
 
 
 
@@ -47,7 +68,7 @@ function UserList() {
   return (
     <div className="grid-container">
       <div className="top" style={{ marginBottom: '100px'}}><TopBar /></div>
-      <div className="side" style={{marginLeft:'80px'}}> <Side></Side></div>
+      <div className="side"> <Side></Side></div>
       <div className="mid">
       <div className='container'>
         <div className='posts-section'>
@@ -64,6 +85,14 @@ function UserList() {
         <div className='recommended-friends-section'>
 
 <RecommendedFriends userId={userId} token={token} />
+<br></br>
+<h2 className="section-title" style={{ color: '#FF9B00', fontFamily: 'Poppins, sans-serif' }}>Popular Hashtags</h2>
+<ul className="hashtags-list">
+              {allHashtags.map(tag => (
+                <li key={tag.id}><Link to={`/hashtags/${tag.name}`}> <span className="hashtag-circle">#</span>{tag.name}</Link></li>
+              ))}
+            </ul>
+      
 </div>
 </div>
 

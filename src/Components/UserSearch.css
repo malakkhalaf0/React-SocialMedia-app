@@ -39,19 +39,21 @@
 
 .search-results {
   position: absolute;
-  top: 100%;
+
   left: 0;
   width: 100%;
 
   border-radius: 10px;
   z-index: 1000;
   padding: 10px;
+
 }
 
 .user-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  background-color: #edeae9;
 }
 
 .user-card {
@@ -86,4 +88,19 @@
 
 .user-info a:hover {
   text-decoration: underline;
+}
+.linktopost {
+  background-color: #edeae9;
+  text-decoration: none;
+ 
+}
+.linktopost a {
+  background-color: #f0f0f0;
+font-size: large;
+  text-decoration: none;
+}
+.linktopost :hover{
+  background-color: #f0f0f0;
+  color: #490057;
+  text-decoration: none;
 }

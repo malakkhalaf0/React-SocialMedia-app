@@ -112,8 +112,16 @@ function ProfileForm({  profile, onUpdate }) {
   };
 
   return (
+   
+    // <div className="grid-container">
+    // <div className="top"><TopBar/></div>
+    // <div className="side"><Side></Side></div>
+    // <div className="mid">
+  
     <form className="form-container" onSubmit={handleSubmit}>
+
       <div className="form-input">
+      
         <label>Bio:</label>
         <textarea name="bio" value={formData.bio} onChange={handleChange}  style={{ border: er === 'bio' ? '2px solid red' : '1px solid #490057;' }}/>
       </div>
@@ -152,6 +160,9 @@ function ProfileForm({  profile, onUpdate }) {
         </MuiAlert>
       </Snackbar>
     </form>
+ 
+    // </div>
+    // </div>
   );
 }
 

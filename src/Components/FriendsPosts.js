@@ -25,26 +25,32 @@ function FriendsPosts() {
 
   return (
     <div className="friends-posts">
-         <div className="grid-container">
-      <div className="top" style={{ marginBottom: '100px'}}><TopBar /></div>
-      <div className="side" style={{marginLeft:'80px'}}> <Side></Side></div>
-      <div className="mid">
-      <h2>Friends' Posts</h2>
-
-      {posts.map(post => (
-        <div key={post.id} className="post">
-        
-            <UserPosts userId= {post._links.user.href.split('/').pop()} /> 
-         
-    
-        
+      <div className="grid-container">
+        <div className="top" style={{ marginBottom: '100px' }}>
+          <TopBar />
         </div>
-      ))}
+        <div className="side" style={{ marginLeft: '80px' }}>
+          <Side />
+        </div>
+        <div className="mid" style={{minHeight:'900px'}}>
+          {posts.length === 0 ? (
+            <h2 style={{color:'#c0bcbc',textAlign:'center',fontSize:'35px'}}> Add friends to Explore their posts </h2>
+          ) : (
+            <>
+              <h2 style={{ color: '#FF9B00', fontFamily: 'Poppins, sans-serif' }}>Friends Posts</h2>
+              {posts.map(post => (
+                <div key={post.id} className="post">
+                  <UserPosts userId={post._links.user.href.split('/').pop()} />
+                </div>
+              ))}
+            </>
+          )}
+        </div>
+      </div>
     </div>
-    </div>
-    </div>
-   
   );
+  
+
 }
 
 export default FriendsPosts;

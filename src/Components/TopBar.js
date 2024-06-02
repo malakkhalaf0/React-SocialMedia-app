@@ -32,7 +32,7 @@ function TopBar() {
 
   const handleLogout = () => {
     localStorage.clear();
-    navigate('/');
+    navigate('/login');
   }
 
   useEffect(() => {

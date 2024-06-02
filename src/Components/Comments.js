@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 
 function Comments({ comments, postId, onDeleteComment, onEditComment }) {
   const [username, setUsername] = useState('');
+  const [userid, setUserid] = useState('');
   const [likesCount, setLikesCount] = useState(0);
   const [likers, setLikers] = useState([]);
   const [likerNames, setLikerNames] = useState([]);
@@ -41,6 +42,7 @@ function Comments({ comments, postId, onDeleteComment, onEditComment }) {
       })
       .then(data => {
         setUsername(data.username);
+        setUserid(data.id);
       })
       .catch(error => console.error('Error fetching user:', error));
 
@@ -175,7 +177,7 @@ function Comments({ comments, postId, onDeleteComment, onEditComment }) {
       <div className="comment-avatar">{username.charAt(0).toUpperCase()}</div>
       <div className="comment-content">
         <div className="comment-header">
-          <span className="comment-author">   <Link to={`/users/${userId}/profiles/1`}>{username} </Link></span>
+          <span className="comment-author">   <Link to={`/users/${userid}/profiles/1`}>{username} </Link></span>
           {`http://localhost:8080/users/${userId}` === comments._links.user.href && (
             <div style={{display:'flex'}}>
               <IconButton aria-label="delete" onClick={handleDelete}>

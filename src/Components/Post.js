@@ -6,9 +6,6 @@ import CardHeader from '@mui/material/CardHeader';
 import LikePostButton from './LikePostButton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import IconButton from '@mui/material/IconButton';
-import { green } from '@mui/material/colors';
-import Avatar from '@mui/material/Avatar';
-import PublicIcon from '@mui/icons-material/Public';
 import Button from '@mui/material/Button';
 import InputBase from '@mui/material/InputBase';
 import SendIcon from '@mui/icons-material/Send';
@@ -18,26 +15,21 @@ import EditPostForm from './EditPostForm';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import CommentIcon from '@mui/icons-material/Comment';
-import { BorderColorSharp } from '@mui/icons-material';
 
-
-
-
-function Post({ post, token, userId , onPostChange }) {
+function Post({ post, userId , onPostChange }) {
   const [commentText, setCommentText] = useState('');
   const [commentsUpdated, setCommentsUpdated] = useState(false);
   const [userName, setUserName] = useState('');
   const [showComments, setShowComments] = useState(false);
-  const [showLikes, setShowLikes] = useState(false);
+  
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [menuAnchorEl, setMenuAnchorEl] = useState(null);
   const [editFormOpen, setEditFormOpen] = useState(false);
   const userIdc = localStorage.getItem('userId');
-
+  const token = localStorage.getItem('token');
   const handleCommentsToggle = () => {
     setShowComments(!showComments);
   };
@@ -364,6 +356,7 @@ const handleSubmitEditForm = async (data) => {
         autoHideDuration={6000}
         onClose={handleCloseSnackbar}
         message={snackbarMessage}
+        severity="success"
       />
       </Card>
 

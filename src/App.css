@@ -36,3 +36,6 @@
     transform: rotate(360deg);
   }
 }
+.root-container {
+  background-color: #f0f0f0; /* Change this to the desired color */
+}

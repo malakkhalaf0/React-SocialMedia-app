@@ -109,7 +109,7 @@ function CreatePostForm({  userId, onPostCreated}) {
           </button>
         </div>
       </form>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      {/* {errorMessage && <p className="error-message">{errorMessage}</p>} */}
       {successMessage && <p className="success-message">{successMessage}</p>}
     </div>
   );
