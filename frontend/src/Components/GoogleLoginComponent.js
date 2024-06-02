@@ -44,7 +44,6 @@ const GoogleLoginButton = () => {
       console.error('Error during login:', error);
     }
   };
-
   const handleLoginFailure = (response) => {
     console.error('Login failed:', response);
   };
@@ -56,6 +55,7 @@ const GoogleLoginButton = () => {
                             onSuccess={handleLoginSuccess}
                             onFailure={handleLoginFailure}
                             cookiePolicy={'single_host_origin'}
+                         
                         />
                     </GoogleOAuthProvider>
   );

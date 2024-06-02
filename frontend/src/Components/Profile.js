@@ -189,6 +189,11 @@ function Profile() {
       <div className="mid">
         <div className="profile-header">
           <img src="\images\images.jpg" alt="Profile" className="profile-pic" style={{marginLeft:'140px'}}/>
+          {/* <Avatar className="profile-pic" style={{backgroundColor:'#490057', marginLeft:'140px', width:'100px',  // Set the desired width
+    height: '100px', // Set the desired height
+    fontSize: '50px'}}> */}
+                                        {/* {getUserName().charAt(0)} </Avatar> {/* Displaying first character of username */}
+                                    
           <div className="profile-info">
             <div className="profile-details-left">
               <h1 style={{ fontFamily: 'Poppins, sans-serif' }}>{getUserName()}</h1>

@@ -1,120 +1,150 @@
 /* re.css */
-
-input,
-textarea {
-  border: none;
-  border-bottom: 1px solid #490057;
-  outline: none;
-  width: 100%;
-  padding: 8px 0;
-  background-color: transparent;
-  color: #490057;
-  font-size: 16px;
-}
-.header {
-  position: absolute;
-  top: 0px;
-  margin-top: 25px;
-  /* left: 20px; */
-  left: 0;
-  margin-left:20px;
-  font-size: 5em;
-  color: #490057;
-  /* animation: scaleDown 1s ease-out forwards;  */
-}
-/* input:focus,
-textarea:focus {
-  border-bottom: 2px solid #490057;
-} */
-
-input::placeholder,
-textarea::placeholder {
-  color: #490057;
-}
-
-input[type="password"] + .RegisterInputAdornment {
+.register-container {
   display: flex;
+  height: 100vh;
+  background-color: #f3f3f3;
+}
+
+.register-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  cursor: pointer;
+  background-color: #f3f3f3;
 }
 
-input[type="password"] {
-  width: calc(100% - 24px); 
+.register-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #490057;
 }
 
-.RegisterInputContainer {
-  position: relative;
+.register-image {
+  width: 80%;
+  max-width: 500px;
 }
 
-.RegisterInputContainer .RegisterInputAdornment {
-  position: absolute;
-  right: 0;
-  bottom: 8px;
-  
+.register-form-container {
+  width: 100%;
+  max-width: 400px;
+  max-height: 400px;
+  padding: 2rem;
+  background: #f3f3f3;
+  border-radius: 8px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
 }
-.RegisterInputAdornment{
-color:#490057 ;
+
+.register-logo {
+  color: #fbb03b;
+  font-family: 'Poppins, sans-serif';
+  font-size: 40px;
 }
-.RegisterErrorMessage {
-  color: red;
-  font-size: 14px;
-  margin-top: 5px;
+
+.register-title {
+  margin-top:0 ;
+  color: #490057;
   text-align: center;
+  font-family: 'Poppins, sans-serif';
 }
 
-.RegisterButton {
+.register-input-container {
+  position: relative;
+  /* margin-bottom: 1rem; */
+}
+
+.register-input {
+  width: 376px;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.register-input-adornment {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #490057;
+}
+
+.register-button {
+  width: 100%;
+  padding: 0.75rem;
   background-color: #490057;
   color: white;
   border: none;
-  padding: 10px 20px;
+  border-radius: 4px;
   cursor: pointer;
-  border-radius: 5px;
-  width: 200px;
-  display: block;
-  margin: auto;
-  font-size: large;
+  font-size: 1rem;
+  font-family: 'Poppins, sans-serif';
 }
 
-.RegisterButton:hover {
-  background-color: #36003a;
-}
-
-.RegisterSignInLink {
-  color: #d78b11;
-  text-decoration: none;
-}
-
-.RegisterSignInLink:hover {
-  text-decoration: underline;
-}
-
-.RegisterForm {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.RegisterContainer {
-  padding: 50px 20px;
-  width: 400px;
-  height: 400px;
-  margin: 20px auto;
-  background-color: rgba(255, 255, 255, 0);
-  backdrop-filter: blur(15px);
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-
-}
-
-.RegisterTitle {
+.register-footer {
+  margin-top: 0;
   text-align: center;
-  font-weight: bold;
   color: #490057;
+  font-family: 'Poppins, sans-serif';
 }
 
-.RegisterLink {
-    color: #490057;
-  text-align: center;
+.register-link {
+  color: #FF9B00;
+  text-decoration: none;
+  font-size: medium;
+}
+@media (max-width: 900px) {
+  .register-left{
+    display: none;
+  }
+}
+@media (max-width: 700px) {
+  .register-form-container {
+    padding: 1rem;
+  }
+
+  .register-title {
+    font-size: 1.5rem;
+  }
+
+  .register-button {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .register-input {
+    padding: 0.5rem;
+    font-size: 0.6rem;
+    width: 390px;
+  }
+ 
+
+}
+
+@media (max-width: 500px) {
+  .register-form-container {
+    width: 300px;
+    padding: 0.3rem;
+  }
+
+  .register-title {
+    font-size: 1rem;
+  }
+
+  .register-input {
+    padding: 0.5rem;
+    font-size: 0.6rem;
+    width: 270px;
+  }
+
+  .register-button {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+
 }
