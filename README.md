@@ -15,14 +15,16 @@ The system includes comprehensive unit and integration tests for robust function
 * Likes: Users can like posts and comments.
 * Hashtags: Implement a hashtag system to categorize and organize posts, making it easier for users to discover content related to specific topics or interests using the hashtag
 * High-Security Measures: Includes security features to protect user data.
-* Chat Messaging: the user can send messages to any user in the app. 
-  
+* Chat Messaging: the user can send messages to any user in the app.
+* Sign-in with Google: the user can sign in using a Google account.
+
 ## Technologies Used
 * Javascript
 * react js
 * Material UI
 * Firebase
 * React Router
+* React-oauth/google
 
 
 # Getting Started with Create React App 🛫
