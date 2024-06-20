@@ -189,7 +189,7 @@ function Profile() {
       <div className={`side ${menuOpen ? 'open' : ''}`}><Side /></div>
       <div className="mid">
         <div className="profile-header">
-          <img src="\images\images.jpg" alt="Profile" className="profile-pic" style={{marginLeft:'140px'}}/>
+          <img src="\images\360_F_516275801_f3Fsp17x6HQK0xQgDQEELoTuERO4SsWV.jpg" alt="Profile" className="profile-pic" style={{marginLeft:'140px'}}/>
           {/* <Avatar className="profile-pic" style={{backgroundColor:'#490057', marginLeft:'140px', width:'100px',  // Set the desired width
     height: '100px', // Set the desired height
     fontSize: '50px'}}> */}

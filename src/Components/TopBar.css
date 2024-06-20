@@ -52,7 +52,7 @@
 }
 .search {
   position: absolute;
-  left: 23%;
+  left: 35%;
 
 
 }
@@ -90,12 +90,18 @@
 
 @media (max-width: 768px) {
   .search {
-    order: 2;
+    order: 1;
     margin-top: 10px;
+ 
   }
+  /* .avatar {
+    position: relative;
+    display: flex;
+    margin-left: 0;
+  } */
 }
-/* 
-@media (max-width: 480px) {
+
+/* @media (max-width: 480px) {
 
   .search {
     order: 1;

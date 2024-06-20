@@ -287,13 +287,24 @@
         grid-template-areas:
             "top top top"
             "mid mid mid";
-        grid-template-columns: 1fr;
+        grid-template-columns: 1.5fr;
+        padding-right: 220px;
     }
 
-    .sidee {
+    /* .sidee {
         display: none;
-    }
+    } */
 
+    .search-wrapper{
+        margin-left: 10px;
+    }
+    .search-input {
+        margin-left: 25px;
+
+    }
+    .midd{
+        width: 600px;
+    }
     .topp {
         margin-bottom: 10px;
     }

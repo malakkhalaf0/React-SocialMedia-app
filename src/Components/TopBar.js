@@ -71,7 +71,7 @@ function TopBar() {
             onClick={handleClick}
           >
             <img
-              src="\images\images.jpg"
+              src="\images\360_F_516275801_f3Fsp17x6HQK0xQgDQEELoTuERO4SsWV.jpg"
               alt="User Avatar"
               className="avatar-image"
             />

@@ -1,6 +1,6 @@
 
     
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import Button from '@mui/material/Button';
 import ImageIcon from '@mui/icons-material/Image';
 import VideoIcon from '@mui/icons-material/VideoLibrary';
@@ -52,7 +52,14 @@ function CreatePostForm({  userId, onPostCreated}) {
       setErrorMessage('Error creating post. Please try again later.');
     }
   };
-
+  useEffect(() => {
+    if (successMessage) {
+      const timer = setTimeout(() => {
+        setSuccessMessage('');
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [successMessage]);
   return (
     <div className="create-post-form">
       <form onSubmit={handleFormSubmit}>
