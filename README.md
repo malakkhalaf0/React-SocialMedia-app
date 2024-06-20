@@ -29,7 +29,7 @@ The system includes comprehensive unit and integration tests for robust function
 
 open the terminal in the project folder and run this command 
 
-## npm install
+### `npm install`
 
 then run this command
 
